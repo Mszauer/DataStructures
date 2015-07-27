@@ -15,14 +15,14 @@ namespace Datastructures {
         public int Size {
             get {
                 // TODO: return the size of the vector
-                return 0;
+                return size;
             }
         }
 
         public int Capacity {
             get {
                 // TODO: return the capacity of the vector
-                return 0;
+                return capacity;
             }
         }
 
@@ -50,10 +50,21 @@ namespace Datastructures {
             // If the requested capacity is greater than the current capacity, increase
             // the current capacity to the requested capacity by ceateing a new array
             // dont forget to copy the old data!
+            T[] _data = new T[requestedCapacity];
+            if (requestedCapacity > capacity) {
+                for (int i = 0; i < data.Length; i++) {
+                    data[i] = _data[i];
+                }
+            }
         }
 
         public void Clear() {
             // Essentially a reset function, hold no data, with 0 size and capacity
+            for (int i = 0; i < data.Length; i++) {
+                data[i] = default(T);
+            }
+            size = 0;
+            capacity = 0;
         }
     }
 }
