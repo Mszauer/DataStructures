@@ -54,13 +54,15 @@ namespace Datastructures {
                 T[] _data = new T[capacity * 2];
                 for (int i = 0; i < capacity; i++) {
                     _data[i] = data[i];
+                    if (_data[i] != null) {
+                        size++;
+                    }
                 }
                 data = new T[capacity * 2];
                 for (int i = 0; i < _data.Length; i++) {
                     data[i] = _data[i];
 
                 }
-                size = data.Length;
                 capacity = capacity * 2;
             }
         }
