@@ -46,6 +46,8 @@ namespace Datastructures {
             // ample space. data = new T[size * 2]. Also, copy the data from the old one
             // Dont forget to update the size and capacity variables
             if (capacity == 0) {
+                size = 1;
+                capacity = 1;
                 data = new T[capacity];
             }
             if (size == capacity) {
