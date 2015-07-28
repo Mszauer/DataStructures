@@ -88,7 +88,12 @@ namespace Datastructures {
         public void RemoveAt(int requestedIndex) {
             for (int i = 0; i < size;i++ ) {
                 if (i >= requestedIndex) {
-                    data[i] = data[i + 1];
+                    if (i < size - 1) {
+                        data[i] = data[i + 1];
+                    }
+                    else {
+                        data[i] = default(T);
+                    }
                 }
             }
             size--;
