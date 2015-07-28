@@ -129,9 +129,52 @@ namespace Datastructures {
                 return;
             }
 
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            // TEST 5 Remove at
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            Log("*** TEST 5 ***");
+            Log("Attempting to break remove at:");
+            test.Clear();
+            for (int i = 0; i < 28; i += 4) {
+                test.Append(i);
+            }
+            if (!TestVector<int>(false, test, 7, 8, 0, 4, 8, 12, 16, 20, 24)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            test.RemoveAt(0);
+            if (!TestVector<int>(false, test, 6, 8, 4, 8, 12, 16, 20, 24)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            test.RemoveAt(5);
+            if (!TestVector<int>(false, test, 5, 8, 4, 8, 12, 16, 20)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            test.RemoveAt(3);
+            if (!TestVector<int>(false, test, 4, 8, 4, 8, 12, 20)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            test.RemoveAt(1);
+            if (!TestVector<int>(true, test, 3, 8, 4, 12, 20)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
 
             Console.ReadLine();
         }
+
 
         static bool Compare<T>(T x, T y) where T : class {
             return x == y;

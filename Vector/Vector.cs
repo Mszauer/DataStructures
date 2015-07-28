@@ -51,7 +51,7 @@ namespace Datastructures {
 
                 }
                 data = new T[capacity * 2];
-                for (int i = 0; i < _data.Length; i++) {
+                for (int i = 0; i < size; i++) {
                     data[i] = _data[i];
 
                 }
@@ -69,7 +69,7 @@ namespace Datastructures {
             if (requestedCapacity > capacity) {
                 T[] _data = new T[requestedCapacity];
 
-                for (int i = 0; i < data.Length; i++) {
+                for (int i = 0; i < size; i++) {
                     _data[i] = data[i];
                 }
                 capacity = requestedCapacity;
@@ -84,5 +84,14 @@ namespace Datastructures {
             capacity = 0;
              
         }
+
+        public void RemoveAt(int requestedIndex) {
+            for (int i = 0; i < size;i++ ) {
+                if (i >= requestedIndex) {
+                    data[i] = data[i + 1];
+                }
+            }
+            size--;
+        }//end RemoveAt
     }
 }
