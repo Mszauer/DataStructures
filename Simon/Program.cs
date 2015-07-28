@@ -11,25 +11,27 @@ namespace Datastructures {
             Simon game = new Simon();
             Random r = new Random();
             int nextColor = 0;
+
             do {
                 game.Directions("Watch", System.Convert.ToString(3));
                 game.Directions("Watch", System.Convert.ToString(2));
                 game.Directions("Watch", System.Convert.ToString(1));
                 game.Directions("Watch", "Go!");
-                 
+
                 int previousColor = nextColor;
                 do { nextColor = r.Next(0, 4); } while (nextColor == previousColor);
                 game.HighLightKeys(nextColor);
-                
+
                 game.Directions("Repeat", System.Convert.ToString(3));
                 game.Directions("Repeat", System.Convert.ToString(2));
                 game.Directions("Repeat", System.Convert.ToString(1));
                 game.Directions("Repeat", "Go!");
                 game.WriteKeys();
-                
 
             } while (game.CorrectKeys());
+            Console.Clear();
+            Console.WriteLine("You entered the wrong sequence!");
+            Console.ReadLine();
         }
-        
     }
 }

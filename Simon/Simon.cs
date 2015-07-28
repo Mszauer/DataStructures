@@ -7,8 +7,8 @@ using Datastructures;
 
 namespace Datastructures {
     class Simon {
-        Vector<int> highlightedKeys = new Vector<int>();
-        Vector<int> inputKeys = new Vector<int>();
+        Vector<int> computerInput = new Vector<int>();
+        Vector<int> userInput = new Vector<int>();
 
         public void Directions(string dir, string num) {
             Console.WriteLine("{0} the pattern, {1}", dir, num);
@@ -26,21 +26,25 @@ namespace Datastructures {
                 System.Threading.Thread.Sleep(1000);
                 char key = Console.ReadKey(false).KeyChar;
                 switch (key) {
-                    case 'w':
+                    case 'w': //fall through aka switch version of logical OR/AND
                     case 'W':
+                        userInput.Append(0);
                         SwitchHelper(0);
                         break;
                     case 'a':
                     case 'A':
+                        userInput.Append(1);
                         SwitchHelper(1);
                         break;
                 
                     case 'd':
                     case 'D':
+                        userInput.Append(2);
                         SwitchHelper(2);
                         break;
                     case 's':
                     case 'S':
+                        userInput.Append(3);
                         SwitchHelper(3);
                         break;
                 }
@@ -48,16 +52,16 @@ namespace Datastructures {
             
                 Console.Clear();
                 i++;
-            } while(i < highlightedKeys.Size);
+            } while(i < computerInput.Size);
         }
 
         public void HighLightKeys(int nextColor) {
-            highlightedKeys.Append(nextColor);
+            computerInput.Append(nextColor);
 #if DEBUG
-            Console.WriteLine("Size: " + highlightedKeys.Size + ", Capacity: " + highlightedKeys.Capacity);
+            Console.WriteLine("Size: " + computerInput.Size + ", Capacity: " + computerInput.Capacity);
 #endif
-            for (int i = 0; i < highlightedKeys.Size; i++) {
-                SwitchHelper(highlightedKeys[i]);
+            for (int i = 0; i < computerInput.Size; i++) {
+                SwitchHelper(computerInput[i]);
             }
                 
         }
@@ -112,9 +116,18 @@ namespace Datastructures {
         }
 
         public bool CorrectKeys() {
-            //console highlight console.readkey with corresponding color
-            //if correct go to next pattern
-            return true ;
+            bool correctOrder = true;
+            for (int i = 0; i < computerInput.Size; i++) {
+                if (userInput[i] != computerInput[i]) {
+                    correctOrder = false;
+                }
+
+            }
+            if (correctOrder) {
+                return true;
+            }
+            return false;
         }
+
     }
 }
