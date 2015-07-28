@@ -70,20 +70,17 @@ namespace Datastructures {
             if (requestedCapacity > capacity) {
                 for (int i = 0; i < data.Length; i++) {
                     _data[i] = data[i];
-                    capacity = requestedCapacity;
-
                 }
+                capacity = requestedCapacity;
             }
-
-            
+            for (int i = 0; i < _data.Length; i++) {
+                data[i] = _data[i];
+            }
         }
 
         public void Clear() {
             // Essentially a reset function, hold no data, with 0 size and capacity
-            
-            for (int i = 0; i < data.Length; i++) {
-                data[i] = default(T);
-            }
+            data = null;
             size = 0;
             capacity = 0;
              
