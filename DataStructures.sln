@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector", "Vector\Vector.csproj", "{C39CD657-F697-4D93-B68B-ED3AF1A950F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simon", "Simon\Simon.csproj", "{C2F891D8-7034-46CE-AD6F-F41C17AF302E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C39CD657-F697-4D93-B68B-ED3AF1A950F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C39CD657-F697-4D93-B68B-ED3AF1A950F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C39CD657-F697-4D93-B68B-ED3AF1A950F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F891D8-7034-46CE-AD6F-F41C17AF302E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F891D8-7034-46CE-AD6F-F41C17AF302E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F891D8-7034-46CE-AD6F-F41C17AF302E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F891D8-7034-46CE-AD6F-F41C17AF302E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
