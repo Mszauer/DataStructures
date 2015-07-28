@@ -10,7 +10,7 @@ namespace Datastructures {
         Vector<int> highlightedKeys = new Vector<int>();
         int nextColor = 0;
         Random r = new Random();
-        Vector<ConsoleColor> colors = new Vector<ConsoleColor>();
+        /*Vector<ConsoleColor> colors = new Vector<ConsoleColor>();
         
 
         public void CreateColors() {
@@ -18,13 +18,9 @@ namespace Datastructures {
             colors.Append(ConsoleColor.Green);
             colors.Append(ConsoleColor.Blue);
             colors.Append(ConsoleColor.Yellow);
-        }
+        }*/
 
         public void Directions(string dir, string num) {
-            //console write watch the pattern, 3/2/1/Go!
-            //thread.sleep (1sec)
-            //console.clear
-            //switch to next console write
             Console.WriteLine("{0} the pattern, {1}", dir, num);
             System.Threading.Thread.Sleep(1000);
             Console.Clear();
@@ -35,12 +31,52 @@ namespace Datastructures {
             Console.Write("< ");
             Console.Write(">");
             Console.WriteLine("\n v");
-            Console.ReadLine();
+            //Console.ReadLine();
+            System.Threading.Thread.Sleep(1000);
+            Console.Clear();
         }
 
-        public void HighLightKeys() {
-            nextColor = r.Next(0, 5);
-            Console.WriteLine(">", ConsoleColor.Blue);
+        public void HighLightKeys(int nextColor) {
+            switch (nextColor) {
+                case 0:
+                    Console.WriteLine(" ^", ConsoleColor.Red);
+                    Console.Write("< ");
+                    Console.Write(">");
+                    Console.WriteLine("\n v");
+                    System.Threading.Thread.Sleep(1000);
+                    Console.Clear();
+                    break;
+
+                case 1:
+                    Console.WriteLine(" ^");
+                    Console.Write("< ", ConsoleColor.Green);
+                    Console.Write(">");
+                    Console.WriteLine("\n v");
+                    System.Threading.Thread.Sleep(1000);
+                    Console.Clear();
+                    break;
+
+                case 2:
+                    Console.WriteLine(" ^");
+                    Console.Write("< ");
+                    Console.Write(">", ConsoleColor.Blue);
+                    Console.WriteLine("\n v");
+                    System.Threading.Thread.Sleep(1000);
+                    Console.Clear();
+                    break;
+
+                case 3:
+                    Console.WriteLine(" ^");
+                    Console.Write("< ");
+                    Console.Write(">");
+                    Console.WriteLine("\n v", ConsoleColor.Yellow);
+                    System.Threading.Thread.Sleep(1000);
+                    Console.Clear();
+                    break;
+
+                default:
+                    break;
+            }
         }
         //console write arrow keys
         //left = green , right = blue
@@ -51,10 +87,10 @@ namespace Datastructures {
         //loop through vector and color the directions
         //next one is random
 
-        //console write repeat the pattern, 3/2/1/Go!
-        //thread sleep 1sec
-        //Console.Write arrows keys
-        //console highlight console.readkey with corresponding color
-        //if correct go to next pattern
+        public bool CorrectKeys() {
+            //console highlight console.readkey with corresponding color
+            //if correct go to next pattern
+            return false;
+        }
     }
 }
