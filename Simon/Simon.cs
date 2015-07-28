@@ -43,8 +43,8 @@ namespace Datastructures {
             for (int i = 0; i < highlightedKeys.Size; i++) {
                 switch (highlightedKeys[i]) {
                     case 0:
-                        Console.WriteLine(" ^", ConsoleColor.Red);
-                        Console.Write("< ");
+                        Console.WriteLine(" ^", Console.ForegroundColor = ConsoleColor.Red);
+                        Console.Write("< ", Console.ForegroundColor = ConsoleColor.White);
                         Console.Write(">");
                         Console.WriteLine("\n v");
                         System.Threading.Thread.Sleep(1000);
@@ -53,8 +53,8 @@ namespace Datastructures {
 
                     case 1:
                         Console.WriteLine(" ^");
-                        Console.Write("< ", ConsoleColor.Green);
-                        Console.Write(">");
+                        Console.Write("< ", Console.ForegroundColor = ConsoleColor.Green);
+                        Console.Write(">", Console.ForegroundColor = ConsoleColor.White);
                         Console.WriteLine("\n v");
                         System.Threading.Thread.Sleep(1000);
                         Console.Clear();
@@ -63,8 +63,8 @@ namespace Datastructures {
                     case 2:
                         Console.WriteLine(" ^");
                         Console.Write("< ");
-                        Console.Write(">", ConsoleColor.Blue);
-                        Console.WriteLine("\n v");
+                        Console.Write(">", Console.ForegroundColor = ConsoleColor.Blue);
+                        Console.WriteLine("\n v", Console.ForegroundColor = ConsoleColor.White);
                         System.Threading.Thread.Sleep(1000);
                         Console.Clear();
                         break;
@@ -73,7 +73,8 @@ namespace Datastructures {
                         Console.WriteLine(" ^");
                         Console.Write("< ");
                         Console.Write(">");
-                        Console.WriteLine("\n v", ConsoleColor.Yellow);
+                        Console.WriteLine("\n v", Console.ForegroundColor = ConsoleColor.Yellow);
+                        Console.ForegroundColor = ConsoleColor.White;
                         System.Threading.Thread.Sleep(1000);
                         Console.Clear();
                         break;
