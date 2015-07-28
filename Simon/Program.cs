@@ -17,6 +17,9 @@ namespace Datastructures {
                 game.Directions("Watch", "Go!");
                 game.WriteKeys();
                 game.HighLightKeys(0);
+                game.HighLightKeys(1);
+                game.HighLightKeys(2);
+                game.HighLightKeys(3);
                 game.Directions("Repeat", System.Convert.ToString(3));
                 game.Directions("Repeat", System.Convert.ToString(2));
                 game.Directions("Repeat", System.Convert.ToString(1));

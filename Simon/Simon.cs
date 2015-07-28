@@ -8,7 +8,6 @@ using Datastructures;
 namespace Datastructures {
     class Simon {
         Vector<int> highlightedKeys = new Vector<int>();
-        int nextColor = 0;
         Random r = new Random();
         /*Vector<ConsoleColor> colors = new Vector<ConsoleColor>();
         
@@ -37,51 +36,54 @@ namespace Datastructures {
         }
 
         public void HighLightKeys(int nextColor) {
-            switch (nextColor) {
-                case 0:
-                    Console.WriteLine(" ^", ConsoleColor.Red);
-                    Console.Write("< ");
-                    Console.Write(">");
-                    Console.WriteLine("\n v");
-                    System.Threading.Thread.Sleep(1000);
-                    Console.Clear();
-                    break;
+            highlightedKeys.Append(nextColor);
+#if DEBUG
+            Console.WriteLine("Size: " + highlightedKeys.Size + ", Capacity: " + highlightedKeys.Capacity);
+#endif
+            for (int i = 0; i < highlightedKeys.Size; i++) {
+                switch (highlightedKeys[i]) {
+                    case 0:
+                        Console.WriteLine(" ^", ConsoleColor.Red);
+                        Console.Write("< ");
+                        Console.Write(">");
+                        Console.WriteLine("\n v");
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
 
-                case 1:
-                    Console.WriteLine(" ^");
-                    Console.Write("< ", ConsoleColor.Green);
-                    Console.Write(">");
-                    Console.WriteLine("\n v");
-                    System.Threading.Thread.Sleep(1000);
-                    Console.Clear();
-                    break;
+                    case 1:
+                        Console.WriteLine(" ^");
+                        Console.Write("< ", ConsoleColor.Green);
+                        Console.Write(">");
+                        Console.WriteLine("\n v");
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
 
-                case 2:
-                    Console.WriteLine(" ^");
-                    Console.Write("< ");
-                    Console.Write(">", ConsoleColor.Blue);
-                    Console.WriteLine("\n v");
-                    System.Threading.Thread.Sleep(1000);
-                    Console.Clear();
-                    break;
+                    case 2:
+                        Console.WriteLine(" ^");
+                        Console.Write("< ");
+                        Console.Write(">", ConsoleColor.Blue);
+                        Console.WriteLine("\n v");
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
 
-                case 3:
-                    Console.WriteLine(" ^");
-                    Console.Write("< ");
-                    Console.Write(">");
-                    Console.WriteLine("\n v", ConsoleColor.Yellow);
-                    System.Threading.Thread.Sleep(1000);
-                    Console.Clear();
-                    break;
+                    case 3:
+                        Console.WriteLine(" ^");
+                        Console.Write("< ");
+                        Console.Write(">");
+                        Console.WriteLine("\n v", ConsoleColor.Yellow);
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
             }
+                
         }
-        //console write arrow keys
-        //left = green , right = blue
-        //up =  red , down = yellow
-        //Random start
         //create vector, add random (0,4)
         //bools? true, false (correct key or not)
         //loop through vector and color the directions
