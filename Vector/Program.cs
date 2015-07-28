@@ -144,10 +144,12 @@ namespace Datastructures {
                 error = true;
             }
 
-            for (int i = 0; i < toTest.Size; ++i) {
-                if (!EqualityComparer<T>.Default.Equals(toTest[i], expectedValue[i])) {
-                    error = true;
-                    break;
+            else {
+                for (int i = 0; i < toTest.Size; ++i) {
+                    if (!EqualityComparer<T>.Default.Equals(toTest[i], expectedValue[i])) {
+                        error = true;
+                        break;
+                    }
                 }
             }
 

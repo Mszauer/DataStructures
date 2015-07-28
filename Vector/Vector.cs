@@ -39,14 +39,8 @@ namespace Datastructures {
         }
 
         public void Append(T newData) {
-            // TODO
-            // If the capacity of the data is 0, you are going to have to make a new array
-            // if size == capacity, you are going to have to make a new array
-            // whenever you make a new array, make it 2X the size. That way you will have
-            // ample space. data = new T[size * 2]. Also, copy the data from the old one
-            // Dont forget to update the size and capacity variables
+
             if (capacity == 0) {
-                size = 1;
                 capacity = 1;
                 data = new T[capacity];
             }
@@ -63,7 +57,7 @@ namespace Datastructures {
                 }
                 capacity = capacity * 2;
             }
-            data[size-1] = newData;
+            data[size] = newData;
             size++;
         }
 
