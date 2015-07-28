@@ -2,6 +2,11 @@
 
 namespace Datastructures {
     class Vector<T> {
+        // if (left > right) return 1;
+        // if (left < right) return -1
+        // if (left == right) return 0;
+        public delegate int CompareFunc(T left, T right);
+
         T[] data;
         int size;
         int capacity;
@@ -14,14 +19,12 @@ namespace Datastructures {
 
         public int Size {
             get {
-                // TODO: return the size of the vector
                 return size;
             }
         }
 
         public int Capacity {
             get {
-                // TODO: return the capacity of the vector
                 return capacity;
             }
         }
@@ -29,11 +32,9 @@ namespace Datastructures {
         // Overloading the [] operator to allow for access like an array
         public T this[int index] {
             get {
-                // TODO: Return the element from data at index
                 return data[index];
             }
             set {
-                // TODO: set element at index to Value
                 data[index] = value;
             }
         }
@@ -62,10 +63,6 @@ namespace Datastructures {
         }
 
         public void Reserve(int requestedCapacity) {
-            // If the requested capacity is greater than the current capacity, increase
-            // the current capacity to the requested capacity by ceateing a new array
-            // dont forget to copy the old data!
-            
             if (requestedCapacity > capacity) {
                 T[] _data = new T[requestedCapacity];
 
@@ -78,7 +75,6 @@ namespace Datastructures {
         }
 
         public void Clear() {
-            // Essentially a reset function, hold no data, with 0 size and capacity
             data = null;
             size = 0;
             capacity = 0;
@@ -97,6 +93,27 @@ namespace Datastructures {
                 }
             }
             size--;
-        }//end RemoveAt
+        }
+
+        public void BubbleSort(CompareFunc cmp) {
+            // TODO: Implement a bubble sort to sort the array
+        }
+
+        // Searches for value in the data array. if value is contained in the array
+        // the index of value is returned. If it is not, -1 is returned.
+        // The Vector MUST be sorted for this to work
+        public int BinarySearch(T value, CompareFunc cmp) {
+            // TODO: Implement Binary search, return item index
+            return -1;
+        }
+
+        public void SelectionSort(CompareFunc cmp) {
+            // TODO: Implement
+        }
+
+        public void InsertionSort(CompareFunc cmp) {
+            // TODO: IMplement
+        } // Insertion sort
+
     }
 }

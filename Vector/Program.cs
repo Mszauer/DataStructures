@@ -172,9 +172,100 @@ namespace Datastructures {
                 return;
             }
 
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            // TEST 6 sorting
+            ////////////////////////////////////////////////////////////////////////////////////////////
+            Log("*** TEST 6 ***");
+            Log("Bubble Sort:");
+            test.Clear();
+            test.Append(7);
+            test.Append(3);
+            test.Append(0);
+            test.Append(10);
+            test.Append(5);
+            test.Append(8);
+            test.Append(9);
+            Log("Bubble sort");
+            test.BubbleSort(cmp);
+            if (!TestVector<int>(true, test, 7, 8, 0,3,5,7,8,9,10)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            if (test.BinarySearch(0, cmp) != 0) {
+                LogError("Binary search for 0 returned:  " + test.BinarySearch(0, cmp) + ", expected: 0");
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            if (test.BinarySearch(10, cmp) != 6) {
+                LogError("Binary search for 10 returned:  " + test.BinarySearch(10, cmp) + ", expected: 7");
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            if (test.BinarySearch(5, cmp) != 2) {
+                LogError("Binary search for 5 returned:  " + test.BinarySearch(5, cmp) + ", expected: 2");
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            if (test.BinarySearch(19, cmp) != -1) {
+                LogError("Binary search for 19 returned:  " + test.BinarySearch(19, cmp) + ", expected: -1");
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+            LogSuccess("Binary search works as expected");
+
+            test.Clear();
+            test.Append(7);
+            test.Append(3);
+            test.Append(0);
+            test.Append(10);
+            test.Append(5);
+            test.Append(8);
+            test.Append(9);
+            test.SelectionSort(cmp);
+            Log("Selection sort");
+            if (!TestVector<int>(true, test, 7, 8, 0, 3, 5, 7, 8, 9, 10)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
+            test.Clear();
+            test.Append(7);
+            test.Append(3);
+            test.Append(0);
+            test.Append(10);
+            test.Append(5);
+            test.Append(8);
+            test.Append(9);
+            test.InsertionSort(cmp);
+            Log("Insertion sort");
+            if (!TestVector<int>(true, test, 7, 8, 0, 3, 5, 7, 8, 9, 10)) {
+                System.Diagnostics.Debugger.Break();
+                Console.ReadLine();
+                return;
+            }
+
             Console.ReadLine();
         }
 
+        static int cmp(int l, int r) {
+            if (l < r) {
+                return -1;
+            }
+            else if (l > r) {
+                return 1;
+            }
+            return 0;
+        }
 
         static bool Compare<T>(T x, T y) where T : class {
             return x == y;
