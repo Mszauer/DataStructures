@@ -17,34 +17,38 @@ namespace Datastructures {
         }
 
         public void WriteKeys() {
-            Console.WriteLine(" ^");
-            Console.Write("< ");
-            Console.Write(">");
-            Console.WriteLine("\n v");
-            System.Threading.Thread.Sleep(1000);
-            char key = Console.ReadKey(false).KeyChar;
-            switch (key) {
-                case 'w':
-                case 'W':
-                    SwitchHelper(0);
-                    break;
-                case 'a':
-                case 'A':
-                    SwitchHelper(1);
-                    break;
+            int i = 0;
+            do{
+                Console.WriteLine(" ^");
+                Console.Write("< ");
+                Console.Write(">");
+                Console.WriteLine("\n v");
+                System.Threading.Thread.Sleep(1000);
+                char key = Console.ReadKey(false).KeyChar;
+                switch (key) {
+                    case 'w':
+                    case 'W':
+                        SwitchHelper(0);
+                        break;
+                    case 'a':
+                    case 'A':
+                        SwitchHelper(1);
+                        break;
                 
-                case 'd':
-                case 'D':
-                    SwitchHelper(2);
-                    break;
-                case 's':
-                case 'S':
-                    SwitchHelper(3);
-                    break;
-            }
+                    case 'd':
+                    case 'D':
+                        SwitchHelper(2);
+                        break;
+                    case 's':
+                    case 'S':
+                        SwitchHelper(3);
+                        break;
+                }
 
             
-            Console.Clear();
+                Console.Clear();
+                i++;
+            } while(i < highlightedKeys.Size);
         }
 
         public void HighLightKeys(int nextColor) {
@@ -59,10 +63,10 @@ namespace Datastructures {
         }
 
         void SwitchHelper(int number) {
+
             switch (number) {
                 case 0:
                     Console.Clear();
-                    //Console.WriteLine("Direction #" + (dir));
                     Console.WriteLine(" ^", Console.ForegroundColor = ConsoleColor.Red);
                     Console.Write("< ", Console.ForegroundColor = ConsoleColor.White);
                     Console.Write(">");
@@ -73,7 +77,6 @@ namespace Datastructures {
 
                 case 1:
                     Console.Clear();
-                    //Console.WriteLine("Direction #" + (dir));
                     Console.WriteLine(" ^");
                     Console.Write("< ", Console.ForegroundColor = ConsoleColor.Green);
                     Console.Write(">", Console.ForegroundColor = ConsoleColor.White);
@@ -84,7 +87,6 @@ namespace Datastructures {
 
                 case 2:
                     Console.Clear();
-                    //Console.WriteLine("Direction #" + (dir));
                     Console.WriteLine(" ^");
                     Console.Write("< ");
                     Console.Write(">", Console.ForegroundColor = ConsoleColor.Blue);
@@ -95,7 +97,6 @@ namespace Datastructures {
 
                 case 3:
                     Console.Clear();
-                    //Console.WriteLine("Direction #" + (dir));
                     Console.WriteLine(" ^");
                     Console.Write("< ");
                     Console.Write(">");
