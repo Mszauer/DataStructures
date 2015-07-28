@@ -8,16 +8,6 @@ using Datastructures;
 namespace Datastructures {
     class Simon {
         Vector<int> highlightedKeys = new Vector<int>();
-        Random r = new Random();
-        /*Vector<ConsoleColor> colors = new Vector<ConsoleColor>();
-        
-
-        public void CreateColors() {
-            colors.Append(ConsoleColor.Red);
-            colors.Append(ConsoleColor.Green);
-            colors.Append(ConsoleColor.Blue);
-            colors.Append(ConsoleColor.Yellow);
-        }*/
 
         public void Directions(string dir, string num) {
             Console.WriteLine("{0} the pattern, {1}", dir, num);
@@ -43,6 +33,8 @@ namespace Datastructures {
             for (int i = 0; i < highlightedKeys.Size; i++) {
                 switch (highlightedKeys[i]) {
                     case 0:
+                        Console.Clear();
+                        Console.WriteLine("Direction #" + (i + 1));
                         Console.WriteLine(" ^", Console.ForegroundColor = ConsoleColor.Red);
                         Console.Write("< ", Console.ForegroundColor = ConsoleColor.White);
                         Console.Write(">");
@@ -52,6 +44,8 @@ namespace Datastructures {
                         break;
 
                     case 1:
+                        Console.Clear();
+                        Console.WriteLine("Direction #" + (i + 1));
                         Console.WriteLine(" ^");
                         Console.Write("< ", Console.ForegroundColor = ConsoleColor.Green);
                         Console.Write(">", Console.ForegroundColor = ConsoleColor.White);
@@ -61,6 +55,8 @@ namespace Datastructures {
                         break;
 
                     case 2:
+                        Console.Clear();
+                        Console.WriteLine("Direction #" + (i + 1));
                         Console.WriteLine(" ^");
                         Console.Write("< ");
                         Console.Write(">", Console.ForegroundColor = ConsoleColor.Blue);
@@ -70,6 +66,8 @@ namespace Datastructures {
                         break;
 
                     case 3:
+                        Console.Clear();
+                        Console.WriteLine("Direction #" + (i + 1));
                         Console.WriteLine(" ^");
                         Console.Write("< ");
                         Console.Write(">");
@@ -93,7 +91,7 @@ namespace Datastructures {
         public bool CorrectKeys() {
             //console highlight console.readkey with corresponding color
             //if correct go to next pattern
-            return false;
+            return true ;
         }
     }
 }
