@@ -66,15 +66,14 @@ namespace Datastructures {
             // the current capacity to the requested capacity by ceateing a new array
             // dont forget to copy the old data!
             
-            T[] _data = new T[requestedCapacity];
             if (requestedCapacity > capacity) {
+                T[] _data = new T[requestedCapacity];
+
                 for (int i = 0; i < data.Length; i++) {
                     _data[i] = data[i];
                 }
                 capacity = requestedCapacity;
-            }
-            for (int i = 0; i < _data.Length; i++) {
-                data[i] = _data[i];
+                data = _data;
             }
         }
 
