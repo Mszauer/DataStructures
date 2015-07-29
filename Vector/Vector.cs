@@ -123,7 +123,7 @@ namespace Datastructures {
                 if (cmp(data[midIndex], value) == -1) {
                     //look only at > midIndex
                     min = midIndex + 1;
-                    midIndex = (max - min) / 2;
+                    midIndex = min + ((max - min) / 2);
                 }
                 else if (cmp(data[midIndex], value) == 1) {
                     //look only at <midIndex
