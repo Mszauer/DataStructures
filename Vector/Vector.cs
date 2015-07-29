@@ -162,7 +162,35 @@ namespace Datastructures {
         }
 
         public void InsertionSort(CompareFunc cmp) {
-            // TODO: IMplement
+            //create unsorted list
+            T[] unsorted = new T[size];
+            //copy unsorted values to unsorted list
+            for (int q = 0; q < size; q++) {
+                unsorted[q] = data[q];
+            }
+            //create size of sorted list
+            int sortedSize = 0;
+            //loop through unsorted list
+            for (int i = 0; i < size; i++) {
+                //if not first index, copy then sort
+                if (i != 0) {
+                    unsorted[i] = data[i];
+                    //loop thorough sorted list
+                    for (int j = 0 ; j < sortedSize ; j++){
+                        //if value to the left is greater than input value, move value left
+                        if (cmp(data[j],data[i]) == 1) {
+                            T temp = data[i];
+                            data[i] = data[j];
+                            data[j] = temp;
+                        }
+                    }
+                }
+                else {
+                    //add first element
+                    unsorted[i] = data[i];
+                }
+                sortedSize++;
+            }
         } // Insertion sort
 
     }
