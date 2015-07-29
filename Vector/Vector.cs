@@ -143,18 +143,15 @@ namespace Datastructures {
         public void SelectionSort(CompareFunc cmp) {
             // TODO: Implement
             for (int i = 0; i < size; i++) {
-                int sorted = 0;
+                int sorted = i;
                 int index = i;
                 for (int j = i; j < size; j++) {
-                    if (cmp(index, data[j]) == 1) {
-                        index = data[i];
+                    if (cmp(data[index], data[j]) == 1) {
                         index = j;
                     }
                 }
-                //swap minimum with first unsorted element
-                //index[1,2,3,4,5] = sorted
                 T temp = data[sorted];
-                data[sorted] = min;
+                data[sorted] = data[index];
                 data[index] = temp;
             }
         }
