@@ -130,6 +130,9 @@ namespace Datastructures {
                     max = midIndex - 1;
                     midIndex = (max - min) / 2;
                 }
+                else if (cmp(data[midIndex], value) == 0) {
+                    return midIndex;
+                }
             } while (min < max);
             if (cmp(data[midIndex], value) == 0) {
                 return midIndex;
