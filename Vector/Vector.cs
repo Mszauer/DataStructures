@@ -141,18 +141,23 @@ namespace Datastructures {
         }
 
         public void SelectionSort(CompareFunc cmp) {
-            // TODO: Implement
+            //iterations of loop through array (as many times as there are elements)
             for (int i = 0; i < size; i++) {
+                //sorted is the amount of things we have sorted (should be same as the amount of times we looped)
                 int sorted = i;
-                int index = i;
+                //the place we start at, same as i because we start after sorted elements
+                int indexOfMin = i;
+                //loop through each element
                 for (int j = i; j < size; j++) {
-                    if (cmp(data[index], data[j]) == 1) {
-                        index = j;
+                    //if  min is greater than next element, set min to next element
+                    if (cmp(data[indexOfMin], data[j]) == 1) {
+                        indexOfMin = j;
                     }
                 }
+                //swap
                 T temp = data[sorted];
-                data[sorted] = data[index];
-                data[index] = temp;
+                data[sorted] = data[indexOfMin];
+                data[indexOfMin] = temp;
             }
         }
 
