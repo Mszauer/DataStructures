@@ -6,17 +6,7 @@ namespace Datastructures {
         // if (left < right) return -1
         // if (left == right) return 0;
         public delegate int CompareFunc(T left, T right);
-        public int Compare(T left, T right) {
-            if (left > right) {
-                return 1;
-            }
-            else if (left < right) {
-                return -1;
-            }
-            else if (left == right) {
-                return 0;
-            }
-        }
+
 
         T[] data;
         int size;
@@ -108,7 +98,16 @@ namespace Datastructures {
 
         public void BubbleSort(CompareFunc cmp) {
             // TODO: Implement a bubble sort to sort the array
-
+            for (int i = 0; i < size; i++) {
+                if (cmp == -1) {
+                    T _temp = data[i];
+                    data[i] = data[i + 1];
+                    data[i + 1] = data[i];
+                }
+                else if (cmp == 1 || cmp == 0 ) {
+                    continue;
+                }
+            }
         }
 
         // Searches for value in the data array. if value is contained in the array
