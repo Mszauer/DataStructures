@@ -116,13 +116,26 @@ namespace Datastructures {
         // the index of value is returned. If it is not, -1 is returned.
         // The Vector MUST be sorted for this to work
         public int BinarySearch(T value, CompareFunc cmp) {
-            int midIndex = size / 2;
-            if (cmp(data[midIndex], value) == -1) {
-                //remove left half of list
-            }
-            else if (cmp(data[midIndex], value) == 1) {
-                //remove right half of list
-            }
+            int min = 0;
+            int max = size;
+            int midIndex = (max-min) / 2;
+            do{
+                if (cmp(data[midIndex], value) == -1) {
+                    //look only at > midIndex
+                    min = midIndex + 1;
+                    max = size;
+                    midIndex = (max - min) / 2;
+                }
+                else if (cmp(data[midIndex], value) == 1) {
+                    //look only at <midIndex
+                    min = 0;
+                    max = midIndex - 1;
+                    midIndex = (max - min) / 2;
+                }
+                else if (cmp(data[midIndex], value) == 0) {
+                    return midIndex;
+                }
+            } while (cmp(data[midIndex], value) != 0);
             // TODO: Implement Binary search, return item index
             return -1;
         }
