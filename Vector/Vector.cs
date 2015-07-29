@@ -98,16 +98,19 @@ namespace Datastructures {
 
         public void BubbleSort(CompareFunc cmp) {
             // TODO: Implement a bubble sort to sort the array
-            for (int i = 0; i < size; i++) {
-                if (cmp == -1) {
+            int n = size;
+            int m = 0;
+            for (int i = 0; i < n; i++) {
+                if (cmp(data[i],data[i+1]) == 1) {
                     T _temp = data[i];
                     data[i] = data[i + 1];
                     data[i + 1] = data[i];
                 }
-                else if (cmp == 1 || cmp == 0 ) {
+                else if (cmp(data[i], data[i + 1]) == -1 || cmp(data[i], data[i + 1]) == 0) {
                     continue;
                 }
             }
+            n -= m;
         }
 
         // Searches for value in the data array. if value is contained in the array
