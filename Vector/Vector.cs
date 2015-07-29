@@ -137,12 +137,23 @@ namespace Datastructures {
             if (cmp(data[midIndex], value) == 0) {
                 return midIndex;
             }
-            // TODO: Implement Binary search, return item index
             return -1;
         }
 
         public void SelectionSort(CompareFunc cmp) {
             // TODO: Implement
+            T[] sorted = new T[size];
+            int n = size;
+            for (int j = 0 ; j < n ; j++){
+                T min = data[0];
+                for (int i = 0; i < size; i++) {
+                    //min bigger than data
+                    if (cmp(min,data[i]) == 1) {
+                    }
+                    //min smaller than data
+                }
+                sorted[j] = min;
+            }
         }
 
         public void InsertionSort(CompareFunc cmp) {
