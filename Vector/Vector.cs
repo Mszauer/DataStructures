@@ -123,19 +123,17 @@ namespace Datastructures {
                 if (cmp(data[midIndex], value) == -1) {
                     //look only at > midIndex
                     min = midIndex + 1;
-                    max = size;
                     midIndex = (max - min) / 2;
                 }
                 else if (cmp(data[midIndex], value) == 1) {
                     //look only at <midIndex
-                    min = 0;
                     max = midIndex - 1;
                     midIndex = (max - min) / 2;
                 }
                 else if (cmp(data[midIndex], value) == 0) {
                     return midIndex;
                 }
-            } while (cmp(data[midIndex], value) != 0);
+            } while (min <= max);
             // TODO: Implement Binary search, return item index
             return -1;
         }
