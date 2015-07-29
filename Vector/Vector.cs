@@ -101,12 +101,15 @@ namespace Datastructures {
             int n = size;
             int m = 0;
             for (int i = 0; i < n; i++) {
-                if (cmp(data[i],data[i+1]) == 1) {
-                    T _temp = data[i+1];
-                    data[i+1] = data[i];
-                    data[i] = _temp;
+                if (i + 1 != n) {
+                    if (cmp(data[i], data[i + 1]) == 1) {
+                        T _temp = data[i + 1];
+                        data[i + 1] = data[i];
+                        data[i] = _temp;
+                    }
                 }
             }
+            m++;
             n -= m;
         }
 
