@@ -31,7 +31,7 @@ namespace Datastructures {
 
         public void Enqueue(T newVal) {
             data.Append(newVal);
-            int index = Size - 1;
+            int index = Size - 1 ;
             while (index > 1) {
                 if (cmp(data[index], data[index / 2]) == -1) {
                     T temp = data[index / 2];
@@ -51,9 +51,11 @@ namespace Datastructures {
             data[1] = data[Size - 1];
             data.RemoveAt(Size - 1);
             int index = 1;
-            while (index * 2 + 1 < Size  && index * 2 < Size ) {
-
-                int searchResult = cmp(data[index * 2], data[index * 2 + 1]);
+            while (index * 2 + 1 < Size  || index * 2 < Size ) {
+                int searchResult = -1;
+                if (index * 2 + 1 < Size) {
+                    searchResult = cmp(data[index * 2], data[index * 2 + 1]);
+                }
                 bool useLeftBranch = searchResult == -1;
 
                 //check left branch
@@ -64,7 +66,7 @@ namespace Datastructures {
                     index *= 2;
                 }
                 //check right branch
-                else if (cmp(data[index * 2 + 1], data[index]) == -1) {
+                else if (index * 2 + 1 < Size && cmp(data[index * 2 + 1], data[index]) == -1) {
                     T _temp = data[index];
                     data[index] = data[index * 2 + 1];
                     data[index * 2 + 1] = _temp;

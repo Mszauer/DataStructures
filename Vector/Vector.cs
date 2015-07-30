@@ -33,6 +33,7 @@ namespace Datastructures {
         // Overloading the [] operator to allow for access like an array
         public T this[int index] {
             get {
+
                 return data[index];
             }
             set {
