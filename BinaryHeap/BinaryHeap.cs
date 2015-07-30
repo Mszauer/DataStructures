@@ -58,7 +58,8 @@ namespace Datastructures {
                 else if (cmp(data[i], data[i * 2 + 1]) == -1) {
 
                 }
-            } return default(T); // Will need to get rid of
+            } 
+            return default(T); // Will need to get rid of
         }
 
         public void Clear() {
