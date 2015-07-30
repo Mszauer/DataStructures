@@ -56,14 +56,18 @@ namespace Datastructures {
                 //check left branch
                 if (cmp(data[index], data[index * 2]) == -1) {
                     if (cmp(data[index], data[index * 2]) == 0) {
-                        return data[index];
+                        T _temp = data[index];
+                        data[index] = data[index * 2];
+                        data[index * 2] = temp;
                     }
                     index *= 2;
                 }
                 //check right branch
                 else if (cmp(data[index], data[index * 2 + 1]) == -1) {
                     if (cmp(data[index], data[index * 2 + 1]) == 0) {
-                        return data[index];
+                        T _temp = data[index];
+                        data[index] = data[index * 2+1];
+                        data[index * 2+1] = temp;
                     }
                     index = index * 2 + 1;
                 }
@@ -71,7 +75,7 @@ namespace Datastructures {
                     break;
                 }
             }
-            return data[1]; // Will need to get rid of
+            return temp; // Will need to get rid of
         }
 
         public void Clear() {
