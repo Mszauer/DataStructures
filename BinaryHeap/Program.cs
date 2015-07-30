@@ -37,7 +37,7 @@ namespace BinaryHeap {
                 sb.Append("Dequeue : ");
                 sb.Append(heap.Dequeue());
                 sb.Append(" : ");
-                heap.Enqueue(10);
+                //heap.Enqueue(10);
                 Log(sb.ToString() + HeapToString<int>(heap));
             }
 

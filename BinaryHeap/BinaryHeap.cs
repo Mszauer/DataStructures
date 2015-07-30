@@ -43,7 +43,6 @@ namespace Datastructures {
 
                 }
                 index = index / 2;
-
             }
         }
 
@@ -52,7 +51,7 @@ namespace Datastructures {
             data[1] = data[Size - 1];
             data.RemoveAt(Size - 1);
             int index = 1;
-            while (index * 2 + 1 < Size && index * 2 < Size) {
+            while (index * 2 + 1 < Size  && index * 2 < Size ) {
 
                 int searchResult = cmp(data[index * 2], data[index * 2 + 1]);
                 bool useLeftBranch = searchResult == -1;
@@ -61,18 +60,25 @@ namespace Datastructures {
                 if (useLeftBranch && cmp(data[index * 2], data[index]) == -1) {
                     T _temp = data[index];
                     data[index] = data[index * 2];
-                    data[index * 2] = temp;
+                    data[index * 2] = _temp;
                     index *= 2;
                 }
                 //check right branch
                 else if (cmp(data[index * 2 + 1], data[index]) == -1) {
                     T _temp = data[index];
                     data[index] = data[index * 2 + 1];
-                    data[index * 2 + 1] = temp;
+                    data[index * 2 + 1] = _temp;
                     index = index * 2 + 1;
                 }
                 else {
                     break;
+                }
+            }
+            if (Size == 3) {
+                if (cmp(data[1], data[2]) == 1) {
+                    T emp = data[1];
+                    data[1] = data[2];
+                    data[2] = emp;
                 }
             }
             return temp; // Will need to get rid of
