@@ -50,14 +50,20 @@ namespace Datastructures {
             for (int i = 0; i < Size; i *= 2) {
                 //check left branch
                 if (cmp(data[i], data[i * 2]) == -1) {
-
+                    //loop code?
+                    if (cmp(data[i], data[i * 2]) == 0) {
+                        return data[i];
+                    }
                     if (i * 2 > Size) {
                         break;
                     }
                 }
                 //check right branch
                 else if (cmp(data[i], data[i * 2 + 1]) == -1) {
-                    
+                    //loop code?
+                    if (cmp(data[i], data[i * 2 + 1]) == 0) {
+                        return data[i];
+                    }
                     if (i * 2 + 1 > Size) {
                         break;
                     }
