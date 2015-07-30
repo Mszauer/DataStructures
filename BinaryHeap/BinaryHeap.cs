@@ -88,31 +88,38 @@ namespace Datastructures {
 
         public void Clear() {
             // TODO
-            
+            data.Clear();
+            data.Append(default(T)); // Trash into the first element
+
         }
 
         public int IndexOf(T search) {
             // TODO
             int index = 1;
             //check versus first number
-            if (cmp(data[index], search) == -1) {
-                //Check left branch
-                if (cmp(data[index], data[index * 2]) == -1) {
+            while (index * 2 + 1 < Size || index * 2 < Size) {
+                //set up which branch to search through
+                int searchResult = -1;
+                if (index * 2 + 1 < Size) {
+                    searchResult = cmp(data[index * 2], data[index * 2 + 1]);
+                }
+                bool useLeftBranch = searchResult == -1;
+
+                //check left branch
+                if (useLeftBranch && cmp(data[index * 2], data[index]) == -1) {
                     index *= 2;
-                    if (cmp(data[index],search) == 0){
+                    if (cmp(data[index], search) == 0) {
                         return index;
                     }
                 }
                 //check right branch
-                else if (cmp(data[index], data[index * 2 + 1]) == -1) {
+                else if (index * 2 + 1 < Size && cmp(data[index * 2 + 1], data[index]) == -1) {
                     index = index * 2 + 1;
-                    if (cmp(data[index],search) == 0){
+                    if (cmp(data[index], search) == 0) {
                         return index;
                     }
                 }
-                else if(cmp(data[index],search) == 0){
-                    return index;
-                }
+                break;
             }
             return -1;
         }
