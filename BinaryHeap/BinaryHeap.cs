@@ -32,44 +32,46 @@ namespace Datastructures {
         public void Enqueue(T newVal) {
             data.Append(newVal);
             int index = Size - 1;
-            for (int i = 0; i < Size; i++) {
+            while (index > 1) {
                 if (cmp(data[index], data[index / 2]) == -1) {
                     T temp = data[index / 2];
                     data[index / 2] = data[index];
                     data[index] = temp;
                 }
-                else if (cmp(data[index], data[index / 2]) == 1 || cmp(data[index], data[index / 2]) == 0) {
+                else {
                     break;
+
                 }
+                index = index / 2;
+
             }
         }
 
         public T Dequeue() {
-            data.RemoveAt(1);
+            T temp = data[1];
             data[1] = data[Size - 1];
-            for (int i = 0; i < Size; i *= 2) {
+            data.RemoveAt(Size - 1);
+            int index = 1;
+            while (index * 2 + 1 < Size && index * 2 < Size) {
                 //check left branch
-                if (cmp(data[i], data[i * 2]) == -1) {
-                    //loop code?
-                    if (cmp(data[i], data[i * 2]) == 0) {
-                        return data[i];
+                if (cmp(data[index], data[index * 2]) == -1) {
+                    if (cmp(data[index], data[index * 2]) == 0) {
+                        return data[index];
                     }
-                    if (i * 2 > Size) {
-                        break;
-                    }
+                    index *= 2;
                 }
                 //check right branch
-                else if (cmp(data[i], data[i * 2 + 1]) == -1) {
-                    //loop code?
-                    if (cmp(data[i], data[i * 2 + 1]) == 0) {
-                        return data[i];
+                else if (cmp(data[index], data[index * 2 + 1]) == -1) {
+                    if (cmp(data[index], data[index * 2 + 1]) == 0) {
+                        return data[index];
                     }
-                    if (i * 2 + 1 > Size) {
-                        break;
-                    }
+                    index = index * 2 + 1;
                 }
-            } 
-            return default(T); // Will need to get rid of
+                else {
+                    break;
+                }
+            }
+            return data[1]; // Will need to get rid of
         }
 
         public void Clear() {
