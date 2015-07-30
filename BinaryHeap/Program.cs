@@ -54,7 +54,7 @@ namespace BinaryHeap {
                 Log(HeapToString<int>(heap));
             }
 
-            while (heap.Size > 1) {
+            while (heap.Size >= 1) { //always 21
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Dequeue : ");
                 sb.Append(heap.Dequeue());
