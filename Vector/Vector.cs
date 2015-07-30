@@ -119,7 +119,6 @@ namespace Datastructures {
             int min = 0;
             int max = size;
             int midIndex = (max-min) / 2;
-            do{
                 if (cmp(data[midIndex], value) == -1) {
                     //look only at > midIndex
                     min = midIndex + 1;
@@ -133,7 +132,6 @@ namespace Datastructures {
                 else if (cmp(data[midIndex], value) == 0) {
                     return midIndex;
                 }
-            } while (min < max);
             if (cmp(data[midIndex], value) == 0) {
                 return midIndex;
             }

@@ -30,12 +30,10 @@ namespace Datastructures {
         }
 
         public void Enqueue(T newVal) {
-            // TODO: IMPLEMENT
             data.Append(newVal);
             int index = Size - 1;
             for (int i = 0; i < Size; i++) {
                 if (cmp(data[index], data[index / 2]) == -1) {
-                    //swap
                     T temp = data[index / 2];
                     data[index / 2] = data[index];
                     data[index] = temp;
@@ -49,14 +47,20 @@ namespace Datastructures {
         public T Dequeue() {
             data.RemoveAt(1);
             data[1] = data[Size - 1];
-            for (int i = 0; i < Size; i++) {
+            for (int i = 0; i < Size; i *= 2) {
                 //check left branch
                 if (cmp(data[i], data[i * 2]) == -1) {
 
+                    if (i * 2 > Size) {
+                        break;
+                    }
                 }
                 //check right branch
                 else if (cmp(data[i], data[i * 2 + 1]) == -1) {
-
+                    
+                    if (i * 2 + 1 > Size) {
+                        break;
+                    }
                 }
             } 
             return default(T); // Will need to get rid of
@@ -72,25 +76,23 @@ namespace Datastructures {
             int index = 1;
             //check versus first number
             if (cmp(data[index], search) == -1) {
-                do{
-                    //Check left branch
-                    if (cmp(data[index], data[index * 2]) == -1) {
-                        index *= 2;
-                        if (cmp(data[index],search) == 0){
-                            return index;
-                        }
-                    }
-                    //check right branch
-                    else if (cmp(data[index], data[index * 2 + 1]) == -1) {
-                        index = index * 2 + 1;
-                        if (cmp(data[index],search) == 0){
-                            return index;
-                        }
-                    }
-                    else if(cmp(data[index],search) == 0){
+                //Check left branch
+                if (cmp(data[index], data[index * 2]) == -1) {
+                    index *= 2;
+                    if (cmp(data[index],search) == 0){
                         return index;
                     }
-                } while (index < Size);
+                }
+                //check right branch
+                else if (cmp(data[index], data[index * 2 + 1]) == -1) {
+                    index = index * 2 + 1;
+                    if (cmp(data[index],search) == 0){
+                        return index;
+                    }
+                }
+                else if(cmp(data[index],search) == 0){
+                    return index;
+                }
             }
             return -1;
         }
