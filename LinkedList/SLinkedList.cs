@@ -73,7 +73,7 @@ namespace DataStructures {
                 head = new Node(data, null);
             }
             else {
-                Node _head = new Node(data,head.Next);
+                Node _head = new Node(data,head);
                 head = _head;
             }
             size++;
