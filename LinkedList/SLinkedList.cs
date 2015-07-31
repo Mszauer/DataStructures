@@ -45,10 +45,11 @@ namespace DataStructures {
             get {
                 if (Head != null) {
                     Node crawler = head;
-                    for (int i = 0; i < size; i++) {
+                    for (int i = 0; i < Size; i++) {
                         if (crawler.Next == null) {
                             return crawler;
                         }
+                        crawler = crawler.Next;
                     }
                 }
                 return Head;
