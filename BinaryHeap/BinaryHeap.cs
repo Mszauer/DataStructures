@@ -93,35 +93,43 @@ namespace Datastructures {
 
         }
 
-        public int IndexOf(T search) {
+       public int IndexOf(T search) {
             // TODO
             int index = 1;
             //check versus first number
-            while (index * 2 + 1 < Size || index * 2 < Size) {
-                //set up which branch to search through
-                int searchResult = -1;
-                if (index * 2 + 1 < Size) {
-                    searchResult = cmp(data[index * 2], data[index * 2 + 1]);
+            while (index < Size) {
+                if (cmp(data[index], search) == 0) {
+                    return index;
                 }
-                bool useLeftBranch = searchResult == -1;
 
-                //check left branch
-                if (useLeftBranch && cmp(data[index * 2], data[index]) == -1) {
-                    index *= 2;
-                    if (cmp(data[index], search) == 0) {
-                        return index;
+                // Does the right branch exist?
+                if (index * 2 + 1 < Size) {
+                    // If the right branch is what we are looking for, go down right
+                    if (cmp(data[index * 2], search) == 0) {
+                        index = index * 2;
+                    }
+                    // If the left branch is what we are looking for, go down left
+                    else if (cmp(data[index * 2 + 1], search) == 0) {
+                        index = index * 2 + 1;
+                    }
+                    // Neither branch is what we are looking for, if right value is greater,
+                    // go down right
+                    else if (cmp(data[index * 2], data[index * 2 + 1]) == -1) {
+                        index = index * 2 + 1;
+                    }
+                    // The left value was greater, go down left
+                    else {
+                        index = index * 2;
                     }
                 }
-                //check right branch
-                else if (index * 2 + 1 < Size && cmp(data[index * 2 + 1], data[index]) == -1) {
-                    index = index * 2 + 1;
-                    if (cmp(data[index], search) == 0) {
-                        return index;
-                    }
+                // Right branch was not available, go down left branch instead.
+                // If left branch is invalid, the loop conditional will quit the loop.
+                else {
+                    index = index * 2;
                 }
-                break;
             }
             return -1;
         }
     }
 }
+
