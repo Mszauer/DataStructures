@@ -106,19 +106,29 @@ namespace DataStructures {
                 index++;
                 crawler = crawler.Next;
             }
-            return 0;
+            return -1;
         }
 
         public void InsertAt(T data, int index) {
-            Node crawler = head;
-            for (int i = 0; i < index; i++) {
-                crawler = crawler.Next;
+            if (index == 0) {
+                AddHead(data);
             }
-            Node insert = new Node(data, crawler.Next);
-            crawler.Next = insert;
+            else if (index == size) {
+                AddTail(data);
+            }
+            else {
+                Node crawler = head;
+                for (int i = 0; i < index; i++) {
+                    crawler = crawler.Next;
+                }
+                Node insert = new Node(data, crawler.Next);
+                crawler.Next = insert;
+                size++;
+            }
         }
 
         public void RemoveAt(int index) {
+
             Node crawler = head;
             for (int i = 0; i < index; i++) {
                 crawler = crawler.Next;
