@@ -77,7 +77,8 @@ namespace DataStructures {
         }
 
         public void AddTail(T data) {
-
+            Node newTail = new Node(data, null);
+            Tail.Next = newTail;
         }
 
         public void Clear() {
@@ -86,18 +87,25 @@ namespace DataStructures {
 
         public int IndexOf(T data) {
             int index = 0;
+            Node crawler = head;
             while (index < size) {
-                bool equals = System.Collections.Generic.EqualityComparer<T>.Default.Equals(data[i], data);
+                bool equals = System.Collections.Generic.EqualityComparer<T>.Default.Equals(crawler.Data, data);
                 if (equals) {
                     return index;
                 }
                 index++;
+                crawler = crawler.Next;
             }
             return 0;
         }
 
         public void InsertAt(T data, int index) {
-
+            Node crawler = head;
+            for (int i = 0; i < index; i++) {
+                crawler = crawler.Next;
+            }
+            Node insert = new Node(data, crawler.Next);
+            crawler.Next = insert;
         }
 
         public void RemoveAt(int index) {
@@ -110,11 +118,10 @@ namespace DataStructures {
         }
 
         public Iterator Begin() {
-            return default(Iterator);
-
+            return new Iterator(Head);
         }
         public Iterator End() {
-            return default(Iterator);
+            return new Iterator(Tail);
         }
 
     }
