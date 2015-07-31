@@ -174,12 +174,12 @@ namespace DataStructures {
                     else {
                         LogError("Iter " + index + " was null");
                     }
-                
-                if (iter != null){
+                }
+                if (iter != null) {
                     iter.Next();
                 }
                 index += 1;
-            } while (iter.Data != 0);
+            } while (iter != null && iter.Data != 0);
 
             if (!HadError) {
                 LogSuccess("\nUnit tests finished");
