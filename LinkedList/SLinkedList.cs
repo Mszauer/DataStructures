@@ -9,7 +9,7 @@ namespace DataStructures {
         public class Node {
             public T Data;
             public Node Next;
-            public void Node (T data, Node next){
+            public Node (T data, Node next){
                 Data = data;
                 Next = next;
             }
@@ -17,7 +17,7 @@ namespace DataStructures {
         }
         public class Iterator {
             public Node current;
-            public void Iterator(Node node) {
+            public Iterator(Node node) {
                 
             }
             public void Next() {
@@ -50,29 +50,31 @@ namespace DataStructures {
                 return default(T); //change
             }
         }
-        public void MakeNewHead(T data) {
-            head = new Node();
-            head.Data = data;
-        }
 
         public void AddHead(T data) {
-
+            head = new Node(data,null);
         }
+
         public void AddTail(T data) {
 
         }
+
         public void Clear() {
 
         }
+
         public int IndexOf(T data) {
             return 0;
         }
+
         public void InsertAt(T data, int index) {
 
         }
+
         public void RemoveAt(int index) {
 
         }
+
         public Iterator Begin() {
             return default(Iterator);
 
@@ -80,5 +82,6 @@ namespace DataStructures {
         public Iterator End() {
             return default(Iterator);
         }
+
     }
 }

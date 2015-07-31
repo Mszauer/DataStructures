@@ -164,13 +164,20 @@ namespace DataStructures {
             SLinkedList<int>.Iterator iter = test.Begin();
             int index = 0;
             do {
-                if (iter.Data != itest[index]) {
+                if (iter != null && iter.Data != itest[index]) {
                     LogError("Iteration " + index + " expected at: " + itest[index] + ", got: " + iter.Data);
                 }
                 else {
-                    Log(iter.Data + " / " + itest[index]);
+                    if (iter != null) {
+                        Log(iter.Data + " / " + itest[index]);
+                    }
+                    else {
+                        LogError("Iter " + index + " was null");
+                    }
+                
+                if (iter != null){
+                    iter.Next();
                 }
-                iter.Next();
                 index += 1;
             } while (iter.Data != 0);
 
