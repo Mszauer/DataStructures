@@ -43,13 +43,15 @@ namespace DataStructures {
         }
         public Node Tail {
             get {
-                Node crawler = head;
-                for (int i = 0; i < size; i++) {
-                    if (crawler.Next == null) {
-                        return crawler;
+                if (head != null) {
+                    Node crawler = head;
+                    for (int i = 0; i < size; i++) {
+                        if (crawler.Next == null) {
+                            return crawler;
+                        }
                     }
                 }
-                return default(Node);
+                return Head;
             }
         }
         public T this[int index] {
@@ -79,10 +81,12 @@ namespace DataStructures {
         public void AddTail(T data) {
             Node newTail = new Node(data, null);
             Tail.Next = newTail;
+            size++;
         }
 
         public void Clear() {
             head = null;
+            size = 0;
         }
 
         public int IndexOf(T data) {
