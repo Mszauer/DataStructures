@@ -113,12 +113,12 @@ namespace DataStructures {
             if (index == 0) {
                 AddHead(data);
             }
-            else if (index == size) {
+            else if (index == size-1) {
                 AddTail(data);
             }
             else {
                 Node crawler = head;
-                for (int i = 0; i < index; i++) {
+                for (int i = 1; i < index; i++) {
                     crawler = crawler.Next;
                 }
                 Node insert = new Node(data, crawler.Next);
@@ -129,11 +129,16 @@ namespace DataStructures {
 
         public void RemoveAt(int index) {
 
-            Node crawler = head;
-            for (int i = 0; i < index; i++) {
-                crawler = crawler.Next;
+            if (index == 0) {
+                head = head.Next;
             }
-            crawler.Next = crawler.Next.Next;
+            else {
+                Node crawler = head;
+                for (int i = 1; i < index; i++) {
+                    crawler = crawler.Next;
+                }
+                crawler.Next = crawler.Next.Next;
+            }
             size--;
         }
 
