@@ -43,7 +43,7 @@ namespace DataStructures {
         }
         public Node Tail {
             get {
-                if (head != null) {
+                if (Head != null) {
                     Node crawler = head;
                     for (int i = 0; i < size; i++) {
                         if (crawler.Next == null) {
@@ -79,8 +79,13 @@ namespace DataStructures {
         }
 
         public void AddTail(T data) {
-            Node newTail = new Node(data, null);
-            Tail.Next = newTail;
+            if (Head == null) { 
+                head = new Node(data,null);
+            }
+            else {
+                Node newTail = new Node(data, null);
+                Tail.Next = newTail;
+            }
             size++;
         }
 
