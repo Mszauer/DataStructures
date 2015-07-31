@@ -18,10 +18,10 @@ namespace DataStructures {
         public class Iterator {
             public Node current;
             public Iterator(Node node) {
-                
+                current = node;
             }
             public void Next() {
-
+                current = current.Next;
             }
             public T Data {
                 get {
@@ -32,7 +32,7 @@ namespace DataStructures {
         public Node head = null;
         public int Size {
             get {
-                return 0;
+                return /*return size*/;
             }
         }
         public Node Head{
@@ -47,12 +47,25 @@ namespace DataStructures {
         }
         public T this[int index] {
             get {
-                return default(T); //change
+                if (index < 0 || index > Size){
+                    //throw exception?
+                }
+                Node current = head;
+                for (int i = 0; i < index; i++) {
+                    current = current.Next;
+                }
+                return current.Data;
             }
         }
 
         public void AddHead(T data) {
-            head = new Node(data,null);
+            if (head == null) {
+                head = new Node(data, null);
+            }
+            else {
+                Node _head = new Node(data,head.Next);
+                head = _head;
+            }
         }
 
         public void AddTail(T data) {
@@ -60,10 +73,12 @@ namespace DataStructures {
         }
 
         public void Clear() {
-
+            head = null;
         }
 
         public int IndexOf(T data) {
+            int index = 0;
+                bool equals = System.Collections.Generic.EqualityComparer<T>.Default.Equals(data[i], data);
             return 0;
         }
 
@@ -72,7 +87,11 @@ namespace DataStructures {
         }
 
         public void RemoveAt(int index) {
-
+            Node crawler = head;
+            for (int i = 0; i < index; i++) {
+                crawler = crawler.Next;
+            }
+            crawler.Next = crawler.Next.Next;
         }
 
         public Iterator Begin() {
