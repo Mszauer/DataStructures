@@ -30,9 +30,10 @@ namespace DataStructures {
             }
         }
         public Node head = null;
+        int size = 0;
         public int Size {
             get {
-                return /*return size*/;
+                return size;
             }
         }
         public Node Head{
@@ -42,13 +43,19 @@ namespace DataStructures {
         }
         public Node Tail {
             get {
-                return head; // change to tail
+                Node crawler = head;
+                for (int i = 0; i < size; i++) {
+                    if (crawler.Next == null) {
+                        return crawler;
+                    }
+                }
+                return default(Node);
             }
         }
         public T this[int index] {
             get {
                 if (index < 0 || index > Size){
-                    //throw exception?
+                    throw new System.Exception();
                 }
                 Node current = head;
                 for (int i = 0; i < index; i++) {
@@ -66,6 +73,7 @@ namespace DataStructures {
                 Node _head = new Node(data,head.Next);
                 head = _head;
             }
+            size++;
         }
 
         public void AddTail(T data) {
@@ -78,7 +86,13 @@ namespace DataStructures {
 
         public int IndexOf(T data) {
             int index = 0;
+            while (index < size) {
                 bool equals = System.Collections.Generic.EqualityComparer<T>.Default.Equals(data[i], data);
+                if (equals) {
+                    return index;
+                }
+                index++;
+            }
             return 0;
         }
 
@@ -92,6 +106,7 @@ namespace DataStructures {
                 crawler = crawler.Next;
             }
             crawler.Next = crawler.Next.Next;
+            size--;
         }
 
         public Iterator Begin() {
