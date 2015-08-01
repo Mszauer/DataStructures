@@ -83,6 +83,7 @@ namespace DoublyLinkedList {
         public void AddHead(T data) {
             if (Head == null) {
                 head = new Node(data);
+                tail = Head;
             }
             else {
                 Node newHead = new Node(data);
@@ -108,6 +109,7 @@ namespace DoublyLinkedList {
         }
         public void Clear() {
             head = null;
+            tail = null;
             size = 0;
         }
         public void InsertAt(T data, int index) {
@@ -123,16 +125,21 @@ namespace DoublyLinkedList {
                     crawler = crawler.Next;
                 }
                 Node insert = new Node(data);
-                insert.Next = crawler.Next.Next;
-                //crawler.Next.Next prev = insert?
-                crawler.Next.Next.Prev = insert;
+                insert.Next = crawler.Next;
+                crawler.Next = insert;
                 insert.Prev = crawler;
+                crawler.Next.Prev = insert;
                 size++;
             }
         }
         public void RemoveAt(int index) {
             if (index == 0) {
                 head = head.Next;
+                head.Prev = null;
+            }
+            else if (index == Size - 1) {
+                tail = tail.Prev;
+                tail.Next = null;
             }
             else {
                 Node crawler = head;
@@ -145,7 +152,19 @@ namespace DoublyLinkedList {
             size--;
         }
         public void Sort() {
-
+            for (int i = 0; i < Size; i++) {
+                Node crawler = head;
+                  while (crawler.Next != null){  
+                    int result = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, crawler.Next.Data);
+                    //if l>r , swap data
+                    if (result == 1) {
+                        T temp = crawler.Data;
+                        crawler.Data = crawler.Next.Data;
+                        crawler.Next.Data = temp;
+                    }
+                    crawler = crawler.Next;
+                }
+            }
         }
         public Iterator Begin() {
             return new Iterator(Head);
