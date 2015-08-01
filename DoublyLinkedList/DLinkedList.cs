@@ -65,7 +65,7 @@ namespace DoublyLinkedList {
         }
         public T this[int index] {
             get {
-                if (index < Size -1 || index > Size-1) {
+                if (index < 0 || index > Size-1) {
                     throw new System.Exception();
                 }
                 Node crawler = head;
