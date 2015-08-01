@@ -48,7 +48,7 @@ namespace DoublyLinkedList {
         public Node Tail {
             get {
                 if (Head != null) {
-                    Node crawler = head;
+                    Node crawler = Head;
                     for (int i = 0; i < Size; i++) {
                         if (crawler.Next != null) {
                             return crawler;
@@ -80,6 +80,7 @@ namespace DoublyLinkedList {
                 newHead.Next = Head;
                 Head.Prev = newHead;
             }
+            size++;
         }
         public void AddTail(T data) {
             if (Head == null) {
@@ -90,16 +91,44 @@ namespace DoublyLinkedList {
                 newTail.Prev = Tail;
                 Tail.Next = newTail;
             }
+            size--;
         }
         public void Clear() {
             head = null;
             size = 0;
         }
-        public int InsertAt(T data, int index) {
-            return 0;
+        public void InsertAt(T data, int index) {
+            if (index == 0) {
+                AddHead(data);
+            }
+            else if (index == size - 1) {
+                AddTail(data);
+            }
+            else {
+                Node crawler = head;
+                for (int i = 1; i < index; i++) {
+                    crawler = crawler.Next;
+                }
+                Node insert = crawler.Next;
+                insert.Next = crawler.Next.Next;
+                insert.Prev = crawler;
+                crawler.Next.Prev = insert;
+            }
+            size++;
         }
         public void RemoveAt(int index) {
-
+            if (index == 0) {
+                head = head.Next;
+            }
+            else {
+                Node crawler = head;
+                for (int i = 1; i < index; i++) {
+                    crawler = crawler.Next;
+                }
+                crawler.Next = crawler.Next.Next;
+                crawler.Next.Next.Prev = crawler;
+            }
+            size--;
         }
         public void Sort() {
 
