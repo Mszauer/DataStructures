@@ -98,8 +98,8 @@ namespace DoublyLinkedList {
                 newTail.Prev = Tail;
                 Tail.Next = newTail;
                 tail = newTail;
+                size++;
             }
-            size++;
         }
         public void Clear() {
             head = null;
