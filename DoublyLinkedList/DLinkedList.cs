@@ -68,11 +68,16 @@ namespace DoublyLinkedList {
                 if (index < 0 || index > Size-1) {
                     throw new System.Exception();
                 }
-                Node crawler = head;
-                for (int i = 0; i < Size; i++) {
-                    crawler = crawler.Next;
+                if (Head != null) {
+                    Node crawler = Head;
+                    for (int i = 1; i < Size; i++) {
+                        crawler = crawler.Next;
+                    }
+                    return crawler.Data;
                 }
-                return crawler.Data;
+                else {
+                    return default(T);
+                }
             }
         }
         public void AddHead(T data) {
