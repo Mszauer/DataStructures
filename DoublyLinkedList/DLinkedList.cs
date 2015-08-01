@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoublyLinkedList {
     class DLinkedList<T> {
-        class Node {
+        public class Node {
             public T Data;
             public Node Prev;
             public Node Next;
@@ -15,7 +15,7 @@ namespace DoublyLinkedList {
             }
         }
 
-        class Iterator {
+        public class Iterator {
             private Node current;
             public T Data {
                 get {
