@@ -122,10 +122,11 @@ namespace DoublyLinkedList {
                 for (int i = 1; i < index; i++) {
                     crawler = crawler.Next;
                 }
-                Node insert = crawler.Next;
+                Node insert = new Node(data);
                 insert.Next = crawler.Next.Next;
+                //crawler.Next.Next prev = insert?
+                crawler.Next.Next.Prev = insert;
                 insert.Prev = crawler;
-                crawler.Next.Prev = insert;
                 size++;
             }
         }
