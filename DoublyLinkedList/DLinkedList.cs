@@ -50,18 +50,22 @@ namespace DoublyLinkedList {
                 if (Head != null) {
                     Node crawler = Head;
                     for (int i = 0; i < Size; i++) {
-                        if (crawler.Next != null) {
-                            return crawler;
+                        if (crawler.Next == null) {
+                            tail = crawler;
+                            return tail;
                         } 
                         crawler = crawler.Next;
                     }
+                }
+                else {
+                    tail = Head;
                 }
                 return Head;
             }
         }
         public T this[int index] {
             get {
-                if (index < Size || index > Size) {
+                if (index < Size -1 || index > Size-1) {
                     throw new System.Exception();
                 }
                 Node crawler = head;
@@ -79,19 +83,23 @@ namespace DoublyLinkedList {
                 Node newHead = new Node(data);
                 newHead.Next = Head;
                 Head.Prev = newHead;
+                Head.Next = Head.Next;
+                head = newHead;
             }
             size++;
         }
         public void AddTail(T data) {
             if (Head == null) {
                 AddHead(data);
+                tail = Head;
             }
             else {
                 Node newTail = new Node(data);
                 newTail.Prev = Tail;
                 Tail.Next = newTail;
+                tail = newTail;
             }
-            size--;
+            size++;
         }
         public void Clear() {
             head = null;
