@@ -70,13 +70,13 @@ namespace DoublyLinkedList {
                 }
                 if (Head != null) {
                     Node crawler = Head;
-                    for (int i = 1; i < Size; i++) {
+                    for (int i = 0; i < index ; i++) {
                         crawler = crawler.Next;
                     }
                     return crawler.Data;
                 }
                 else {
-                    return default(T);
+                    return Head.Data;
                 }
             }
         }
@@ -126,8 +126,8 @@ namespace DoublyLinkedList {
                 insert.Next = crawler.Next.Next;
                 insert.Prev = crawler;
                 crawler.Next.Prev = insert;
+                size++;
             }
-            size++;
         }
         public void RemoveAt(int index) {
             if (index == 0) {
