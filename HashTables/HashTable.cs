@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures {
     class HashTable<K,V> {
-        public class KVP<K,V> {
+        public class KVP {
             public K Key;
             public V Value;
             public KVP(K key, V value) {
@@ -17,13 +17,14 @@ namespace DataStructures {
         public delegate int HashFunc(K key);
         private SLinkedList<KVP>[] buckets = null;
         int size = 0;
-        HashFunc hash = default(int);
+        HashFunc hash = null;
         public void HashTable(int numBuckets, HashFunc hash) {
-
+            this.hash = hash;
+            buckets = SLinkedList<KVP>[numBuckets](); // why is this an error?
         }
         public SLinkedList<K> Keys {
             get {
-                return K;
+                return new SLinkedList<K>();
             }
         }
         public int Size {
