@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoublyLinkedList", "DoublyLinkedList\DoublyLinkedList.csproj", "{CCA5C16A-C262-48AA-A136-CD9D807CBF58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTables", "HashTables\HashTables.csproj", "{12E25F61-6235-4675-83D3-00927D443974}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CCA5C16A-C262-48AA-A136-CD9D807CBF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCA5C16A-C262-48AA-A136-CD9D807CBF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCA5C16A-C262-48AA-A136-CD9D807CBF58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12E25F61-6235-4675-83D3-00927D443974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E25F61-6235-4675-83D3-00927D443974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E25F61-6235-4675-83D3-00927D443974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12E25F61-6235-4675-83D3-00927D443974}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
