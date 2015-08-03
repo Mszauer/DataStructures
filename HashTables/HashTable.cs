@@ -35,12 +35,13 @@ namespace DataStructures {
                 //loop through buckets
                 for (int i = 0; i < buckets.Length; i++) {
                     //loop through individual bucket
+                    SLinkedList<KVP> bucket = buckets[i];
                     for (int j = 0; j < buckets[i].Size; j++) {
                         //add key to list
-                        keys.AddHead(buckets[j].);                        
+                        keys.AddHead(bucket[j].Key);                        
                     }
                 }
-                    return new SLinkedList<K>();
+                    return keys;
             }
         }
         public int Size {
@@ -78,22 +79,23 @@ namespace DataStructures {
                     if (result == 0) {
                         return bucket[i].Value;
                     }
-                    else {
-                        throw new SystemException();
-                    }
                 }
                 //what to return as default?
-                return default(V);
+                throw new System.Exception();
             }
             set {
                 SLinkedList<KVP> bucket = buckets[hash(key)];
+                bool pass = true;
                 for (int i = 0; i < buckets.Length; i++) {
                     if (buckets[i] == bucket) {
                         bucket[i].Value = value;
                     }
                     else {
-                        throw new SystemException();
+                        pass = false;
                     }
+                }
+                if (!pass) {
+                    throw new SystemException();
                 }
             }
         }

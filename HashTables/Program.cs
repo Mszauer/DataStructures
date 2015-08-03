@@ -11,7 +11,8 @@ namespace DataStructures {
         public static string outFile = "C:\\Users\\Martin\\Downloads\\test_output.txt";
 
         public static int CustomHash(string arg) {
-            int result = 1; // TODO: DO THIS BETTER
+            int result = 1;
+
 
             return result % 100; // hash table is of size 100
         }
