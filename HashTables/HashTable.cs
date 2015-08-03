@@ -80,22 +80,18 @@ namespace DataStructures {
                         return bucket[i].Value;
                     }
                 }
-                //what to return as default?
                 throw new System.Exception();
             }
             set {
                 SLinkedList<KVP> bucket = buckets[hash(key)];
-                bool pass = true;
-                for (int i = 0; i < buckets.Length; i++) {
-                    if (buckets[i] == bucket) {
+                for (int i = 0; i < bucket.Size; i++) {
+                    int result = System.Collections.Generic.Comparer<K>.Default.Compare(bucket[i].Key, key);
+                    if (result == 0) {
                         bucket[i].Value = value;
                     }
                     else {
-                        pass = false;
+                        throw new SystemException();
                     }
-                }
-                if (!pass) {
-                    throw new SystemException();
                 }
             }
         }
