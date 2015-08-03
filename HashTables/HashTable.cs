@@ -31,10 +31,16 @@ namespace DataStructures {
         public SLinkedList<K> Keys {
             get {
                 //make list
+                SLinkedList<K> keys = new SLinkedList<K>();
                 //loop through buckets
-                //loop through individual bucket
-                //add key to list
-                return new SLinkedList<K>();
+                for (int i = 0; i < buckets.Length; i++) {
+                    //loop through individual bucket
+                    for (int j = 0; j < buckets[i].Size; j++) {
+                        //add key to list
+                        keys.AddHead(buckets[j].);                        
+                    }
+                }
+                    return new SLinkedList<K>();
             }
         }
         public int Size {
