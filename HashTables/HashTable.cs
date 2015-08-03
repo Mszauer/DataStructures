@@ -19,7 +19,7 @@ namespace DataStructures {
         private SLinkedList<KVP>[] buckets = null;
         int size = 0;
         HashFunc hash = null;
-        public void HashTable(int numBuckets, HashFunc hash) {
+        public HashTable(int numBuckets, HashFunc hash) {
             this.hash = hash;
             //initialize the array
             buckets = new SLinkedList<KVP>[numBuckets];
@@ -30,7 +30,10 @@ namespace DataStructures {
         }
         public SLinkedList<K> Keys {
             get {
-
+                //make list
+                //loop through buckets
+                //loop through individual bucket
+                //add key to list
                 return new SLinkedList<K>();
             }
         }
@@ -74,7 +77,7 @@ namespace DataStructures {
                     }
                 }
                 //what to return as default?
-                return V;
+                return default(V);
             }
             set {
                 SLinkedList<KVP> bucket = buckets[hash(key)];

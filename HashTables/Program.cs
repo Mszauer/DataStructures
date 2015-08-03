@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Datastructures {
+namespace DataStructures {
     class Program {
         public static bool HadError = false;
         public static StreamWriter outStream = null;
