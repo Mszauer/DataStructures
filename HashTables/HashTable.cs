@@ -46,11 +46,9 @@ namespace DataStructures {
                 if (result == 0) {
                     throw new System.Exception();
                 }
-
             }
             KVP val = new KVP(key, value);
             buckets[hash(key)].AddHead(val);
-            
             size++;
         }
         public void Remove(K key) {
@@ -71,13 +69,15 @@ namespace DataStructures {
                     else {
                         throw new SystemException();
                     }
-                    //what to return as default?
                 }
+                //what to return as default?
+                return V;
             }
             set {
+                SLinkedList<KVP> bucket = buckets[hash(key)];
                 for (int i = 0; i < buckets.Length; i++) {
-                    if (buckets[i] == hash(key)) {
-                        buckets[i].Value = value; //yep no clue here either
+                    if (buckets[i] == bucket) {
+                        bucket.AddHead(); //what do I add?
                     }
                     else {
                         throw new SystemException();
