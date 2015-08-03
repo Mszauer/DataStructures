@@ -53,6 +53,9 @@ namespace DataStructures {
         }
         public void Remove(K key) {
             SLinkedList<KVP> bucket = buckets[hash(key)];
+            for (int i = bucket.Size; i >= 0; i--){
+                bucket.RemoveAt(i);
+            }
             size--;
         }
         public int Hash(K key) {
@@ -77,7 +80,7 @@ namespace DataStructures {
                 SLinkedList<KVP> bucket = buckets[hash(key)];
                 for (int i = 0; i < buckets.Length; i++) {
                     if (buckets[i] == bucket) {
-                        bucket.AddHead(); //what do I add?
+                        bucket[i].Value = value;
                     }
                     else {
                         throw new SystemException();
