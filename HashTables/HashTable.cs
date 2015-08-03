@@ -29,7 +29,7 @@ namespace DataStructures {
             //fill in the list with data
             for (int i = 0 ; i < buckets.Length ; i++){
                 for (int j = 0 ; j < numBuckets ; j++){
-                    buckets[i].AddHead(null);
+                    buckets[i].AddHead(null);// what do i add?
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace DataStructures {
         public void Remove(K key) {
             //loop until key is found, remove key
             for (int i = buckets.Length -1; i >= 0 ; i--) {
-                if (buckets[i] == key) { //what? what do I even compare
+                if (buckets[i]/*returns slinked list*/ == key) { //what? what do I even compare
                     buckets[i] = buckets[i - 1];
                 }
             }
