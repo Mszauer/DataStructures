@@ -59,6 +59,18 @@ namespace BinarySearchTree {
             return false;
         }
         public bool Remove(T data) {
+            Node crawler = root;
+            GetParent(crawler, data);
+            //case 0
+            int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
+            int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
+            if (left == 0) {
+                crawler.Left = null;
+            }
+            else if (right == 0) {
+                crawler.Right = null;
+            }
+            //case 1
             
             return false;
         }
@@ -112,6 +124,7 @@ namespace BinarySearchTree {
                 //if either left or right child is the data we are looking for, set parent to current
                 else if (left == 0 || right == 0) {
                     parent = crawler;
+                    break;
                 }
             }
             return parent;   
