@@ -61,6 +61,40 @@ namespace BinarySearchTree {
             return false;
         }
         public bool Remove(T data) {
+            //check if it contains node with our data
+            if (Contains(data)) {
+                Node crawler = root;
+                //find the node with value we want
+                do {
+                    int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(data, crawler.Data);
+                    if (cmp == -1) {
+                        //if smaller, move left
+                        crawler = crawler.Left;
+                    }
+                    else if (cmp == 1) {
+                        //if larger, move right
+                        crawler = crawler.Right;
+                    }
+                    else {
+                        //crawler is on the node we want to remove
+                        //equal remove node and assign it with next smallest value
+                        //case 1
+                        if (crawler.Left == null && crawler.Right == null) {
+                            crawler = null;
+                        }
+                        //case 2
+                        else if (crawler.Left != null) {
+                            //set previous node's left to crawler.left
+                        }
+                        else if (crawler.Right != null) {
+                            //set previous node's right to carawler.right
+                        }
+                        //case 3
+                        //compare both childern and see which is smaller then replace and relink
+                    }
+                } while (crawler != null);//fix this
+            }
+            //doesn't contain node, can't remove
             return false;
         }
         private void Traverse(Node crawler,T data) { //goes down BST and assigns New Node
