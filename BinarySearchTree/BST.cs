@@ -67,15 +67,15 @@ namespace BinarySearchTree {
             //special root node case code
             if (parent == null) { //Root node
                 if (remove.Left == null && remove.Right == null) {
-                    remove = null;
+                    root = null;
                     return true;
                 }
                 else if (remove.Left != null && remove.Right == null) {
-                    remove = remove.Left;
+                    root = remove.Left;
                     return true;
                 }
                 else if (remove.Left == null && remove.Right != null) {
-                    remove = remove.Right;
+                    root = remove.Right;
                     return true;
                 }
                 else if (remove.Left != null && remove.Right != null) {
@@ -83,7 +83,7 @@ namespace BinarySearchTree {
                     while (crawler.Left != null) {
                         crawler = crawler.Left;
                     }
-                    remove.Data = crawler.Data;
+                    root.Data = crawler.Data;
                     return Remove(crawler.Data);
                 }
             }
