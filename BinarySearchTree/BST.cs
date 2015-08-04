@@ -59,23 +59,32 @@ namespace BinarySearchTree {
             return false;
         }
         public bool Remove(T data) {
-            Node crawler = root;
-            crawler = GetParent(crawler, data);
-            //case 0
-            int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
-            int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
-            if (left == 0) {
-                if (crawler.Left.Left == null && crawler.Left.Right == null) {
-                    crawler.Left = null;
-
-                }
+            Node remove = GetNode(data);
+            if (remove == null) {
+                return false;
             }
-            else if (right == 0) {
-                if (crawler.Right.Left == null && crawler.Right.Right == null) {
-                    crawler.Right = null;
+            Node parent = GetParent(remove);
+            if (parent == null) { //Root node
+                //special case code
+            }
+            //case 0
+            if (remove.Left == null && remove.Right == null) {
+                if (parent.Left == remove) {
+                    parent.Left = null;
+                }
+                else {
+                    parent.Right = null;
                 }
             }
             //case 1
+            if (remove.Left != null || remove.Right != null) {
+                if (remove.Left != null && parent.Left == remove) {
+                    parent.Left = remove.Left;
+                }
+                if (remove.Right != null && parent.Right == remove) {
+                    parent.Right = remove.Right;
+                }
+            }
             
             return false;
         }
@@ -112,12 +121,33 @@ namespace BinarySearchTree {
                 }
             }
         }
-        private Node GetParent(Node crawler, T data) {
-            Node parent = null;
-            while (crawler != null) {
+        private Node GetNode(T data) {
+            Node crawler = root;
+            do{
+                if (crawler == null){
+                    break;
+                }
+                
                 int dir = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, data);
-                int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
-                int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
+                if (dir == 0) {
+                    return crawler;
+                }
+                else if (dir == -1) {
+                    crawler = crawler.Left;
+                }
+                else {
+                    crawler = crawler.Right;
+                }
+            }while (true);
+            return crawler;
+        }
+        private Node GetParent(Node child) {
+            Node parent = null;
+            Node crawler = root;
+            while (crawler != null) {
+                int dir = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, child.Data);
+                int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, child.Data);
+                int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, child.Data);
                 //if left child exists, and data is smaller than parent data, and left data is not the data we look for
                 if (crawler.Left != null && dir == -1 && left != 0) {
                     crawler = crawler.Left;
