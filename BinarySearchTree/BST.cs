@@ -28,7 +28,7 @@ namespace BinarySearchTree {
             }
             else {
                 Node crawler = root;
-                Traverse(crawler, data);
+                AddChild(crawler, data);
             }
             height++;
         }
@@ -76,6 +76,7 @@ namespace BinarySearchTree {
                         crawler = crawler.Right;
                     }
                     else {
+                        //find parent node
 
                         //equal remove node and assign it with next smallest value
                         //case 1
@@ -102,7 +103,7 @@ namespace BinarySearchTree {
             //doesn't contain node, can't remove
             return false;
         }
-        private void Traverse(Node crawler,T data) { //goes down BST and assigns New Node
+        private void AddChild(Node crawler,T data) { //goes down BST and assigns New Node
             //compare values
             int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(data, crawler.Data);
             //if smaller go left
@@ -117,7 +118,7 @@ namespace BinarySearchTree {
                     //move left
                     crawler = crawler.Left;
                     //recurse
-                    Traverse(crawler, data);
+                    AddChild(crawler, data);
                 }
             }
             //if larger go right
@@ -131,9 +132,39 @@ namespace BinarySearchTree {
                 else {
                     //move right, recurse
                     crawler = crawler.Right;
-                    Traverse(crawler, data);
+                    AddChild(crawler, data);
                 }
             }
+        }
+        private Node FindParent(Node crawler, T data) {
+            int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, data);
+            if (cmp == -1) {
+                //check if left subroot is empty / node is a leaf
+                int _cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data,data);
+                if (_cmp == 0) {
+                    return crawler;
+                }
+                else {
+                    //move left
+                    crawler = crawler.Left;
+                    //recurse
+                    FindParent(crawler, data);
+                }
+                
+            }
+            
+            //if larger go right
+            else {
+                int _cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
+                if (_cmp == 0) {
+                    return crawler;
+                }
+                else {
+                    crawler = crawler.Right;
+                    FindParent(crawler, data);
+                }
+            }
+            return crawler;
         }
     }
 }
