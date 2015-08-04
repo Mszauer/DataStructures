@@ -64,31 +64,57 @@ namespace BinarySearchTree {
                 return false;
             }
             Node parent = GetParent(remove);
+            //special root node case code
             if (parent == null) { //Root node
-                //special case code
+                if (remove.Left == null && remove.Right == null) {
+                    remove = null;
+                    return true;
+                }
+                else if (remove.Left != null && remove.Right == null) {
+                    remove = remove.Left;
+                    return true;
+                }
+                else if (remove.Left == null && remove.Right != null) {
+                    remove = remove.Right;
+                    return true;
+                }
+                else if (remove.Left != null && remove.Right != null) {
+                    Node crawler = remove.Right;
+                    while (crawler.Left != null) {
+                        crawler = crawler.Left;
+                    }
+                    remove.Data = crawler.Data;
+                    return Remove(crawler.Data);
+                }
             }
             //case 0
             if (remove.Left == null && remove.Right == null) {
                 if (parent.Left == remove) {
                     parent.Left = null;
+                    return true;
                 }
                 else {
                     parent.Right = null;
+                    return true;
                 }
             }
             //case 1
             else if (remove.Left != null || remove.Right != null) {
                 if (remove.Left != null && parent.Left == remove) {
                     parent.Left = remove.Left;
+                    return true;
                 }
                 else if (remove.Right != null && parent.Right == remove) {
                     parent.Right = remove.Right;
+                    return true;
                 }
                 else if (remove.Left != null && parent.Right == remove) {
                     parent.Right = remove.Left;
+                    return true;
                 }
                 else if(remove.Right != null && parent.Left == remove) {
                     parent.Left = remove.Right;
+                    return true;
                 }
             }
             //case 2
@@ -100,7 +126,7 @@ namespace BinarySearchTree {
                         crawler = crawler.Left;
                     }
                     remove.Data = crawler.Data;
-                    Remove(crawler.Data);
+                    return Remove(crawler.Data);
                 }
                 else if (parent.Right == remove) {
                     crawler = crawler.Right;
@@ -108,7 +134,7 @@ namespace BinarySearchTree {
                         crawler = crawler.Left;
                     }
                     remove.Data = crawler.Data;
-                    Remove(crawler.Data);
+                    return Remove(crawler.Data);
                 }
             }
 
