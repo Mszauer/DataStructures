@@ -77,20 +77,41 @@ namespace BinarySearchTree {
                 }
             }
             //case 1
-            if (remove.Left != null || remove.Right != null) {
+            else if (remove.Left != null || remove.Right != null) {
                 if (remove.Left != null && parent.Left == remove) {
                     parent.Left = remove.Left;
                 }
-                if (remove.Right != null && parent.Right == remove) {
+                else if (remove.Right != null && parent.Right == remove) {
                     parent.Right = remove.Right;
                 }
-                if (remove.Left != null && parent.Right == remove) {
+                else if (remove.Left != null && parent.Right == remove) {
                     parent.Right = remove.Left;
                 }
-                if (remove.Right != null && parent.Left == remove) {
+                else if(remove.Right != null && parent.Left == remove) {
                     parent.Left = remove.Right;
                 }
             }
+            //case 2
+            else if (remove.Left != null && remove.Right != null) {
+                Node crawler = remove;
+                if (parent.Left == remove) {
+                    crawler = crawler.Right;
+                    while (crawler.Left != null) {
+                        crawler = crawler.Left;
+                    }
+                    remove.Data = crawler.Data;
+                    Remove(crawler.Data);
+                }
+                else if (parent.Right == remove) {
+                    crawler = crawler.Right;
+                    while (crawler.Left != null) {
+                        crawler = crawler.Left;
+                    }
+                    remove.Data = crawler.Data;
+                    Remove(crawler.Data);
+                }
+            }
+
             
             return false;
         }
