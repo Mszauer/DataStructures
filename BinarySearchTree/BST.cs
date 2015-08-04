@@ -76,7 +76,7 @@ namespace BinarySearchTree {
                         crawler = crawler.Right;
                     }
                     else {
-                        //crawler is on the node we want to remove
+
                         //equal remove node and assign it with next smallest value
                         //case 1
                         if (crawler.Left == null && crawler.Right == null) {
@@ -85,12 +85,17 @@ namespace BinarySearchTree {
                         //case 2
                         else if (crawler.Left != null) {
                             //set previous node's left to crawler.left
+                            /*
+                             * crawler.Data = crawler.Left.Data;
+                            crawler.Left = null;
+                             * deletes everything on the left tree
+                             */
                         }
                         else if (crawler.Right != null) {
                             //set previous node's right to carawler.right
                         }
                         //case 3
-                        //compare both childern and see which is smaller then replace and relink
+                        //compare children, see which is smaller, then link accordingly
                     }
                 } while (crawler != null);//fix this
             }
