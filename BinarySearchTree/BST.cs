@@ -84,6 +84,12 @@ namespace BinarySearchTree {
                 if (remove.Right != null && parent.Right == remove) {
                     parent.Right = remove.Right;
                 }
+                if (remove.Left != null && parent.Right == remove) {
+                    parent.Right = remove.Left;
+                }
+                if (remove.Right != null && parent.Left == remove) {
+                    parent.Left = remove.Right;
+                }
             }
             
             return false;
