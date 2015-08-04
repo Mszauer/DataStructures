@@ -25,14 +25,45 @@ namespace BinarySearchTree {
         public void Insert(T data) {
             if (root == null) {
                 root = new Node(data);
-                height++;
             }
             else {
                 Node crawler = root;
                 Traverse(crawler, data);
             }
+            height++;
         }
-        private void Traverse(Node crawler,T data) {
+
+        public bool Contains(T data) {
+            Node crawler = root;
+            int h = 0;
+            do {
+                //if it reached the end, break
+                if (crawler == null) {
+                    break;
+                }
+                //compare value given vs node value
+                int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(data, crawler.Data);
+                if (cmp == -1) {
+                    //if smaller, move left
+                    crawler = crawler.Left;
+                }
+                else if (cmp == 1) {
+                    //if larger, move right
+                    crawler = crawler.Right;
+                }
+                else {
+                    //equal, return true
+                    return true;
+                }
+                h++;
+            } while (h < Height);
+            //returns false if value has not been found and it reached a leaf node
+            return false;
+        }
+        public bool Remove(T data) {
+            return false;
+        }
+        private void Traverse(Node crawler,T data) { //goes down BST and assigns New Node
             //compare values
             int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(data, crawler.Data);
             //if smaller go left
