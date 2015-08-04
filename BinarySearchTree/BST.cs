@@ -152,10 +152,9 @@ namespace BinarySearchTree {
                 }
                 
             }
-            
             //if larger go right
-            else {
-                int _cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
+            else if (cmp == 1){
+                int _cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
                 if (_cmp == 0) {
                     return crawler;
                 }
