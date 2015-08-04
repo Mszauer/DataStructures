@@ -35,7 +35,6 @@ namespace BinarySearchTree {
 
         public bool Contains(T data) {
             Node crawler = root;
-            int h = 0;
             do {
                 //if it reached the end, break
                 if (crawler == null) {
@@ -55,52 +54,12 @@ namespace BinarySearchTree {
                     //equal, return true
                     return true;
                 }
-                h++;
-            } while (h < Height);
+            } while (true);
             //returns false if value has not been found and it reached a leaf node
             return false;
         }
         public bool Remove(T data) {
-            //check if it contains node with our data
-            if (Contains(data)) {
-                Node crawler = root;
-                //find the node with value we want
-                do {
-                    int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(data, crawler.Data);
-                    if (cmp == -1) {
-                        //if smaller, move left
-                        crawler = crawler.Left;
-                    }
-                    else if (cmp == 1) {
-                        //if larger, move right
-                        crawler = crawler.Right;
-                    }
-                    else {
-                        //find parent node
-
-                        //equal remove node and assign it with next smallest value
-                        //case 1
-                        if (crawler.Left == null && crawler.Right == null) {
-                            crawler = null;
-                        }
-                        //case 2
-                        else if (crawler.Left != null) {
-                            //set previous node's left to crawler.left
-                            /*
-                             * crawler.Data = crawler.Left.Data;
-                            crawler.Left = null;
-                             * deletes everything on the left tree
-                             */
-                        }
-                        else if (crawler.Right != null) {
-                            //set previous node's right to carawler.right
-                        }
-                        //case 3
-                        //compare children, see which is smaller, then link accordingly
-                    }
-                } while (crawler != null);//fix this
-            }
-            //doesn't contain node, can't remove
+            
             return false;
         }
         private void AddChild(Node crawler,T data) { //goes down BST and assigns New Node
@@ -136,54 +95,37 @@ namespace BinarySearchTree {
                 }
             }
         }
-        private Node FindParent(Node crawler, T data) {
-            int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, data);
-            if (cmp == -1) {
-                //check if left subroot is empty / node is a leaf
-                int _cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data,data);
-                if (_cmp == 0) {
-                    return crawler;
+        private Node GetParent(Node crawler, T data) {
+            Node parent = null;
+            while (crawler != null) {
+                int dir = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, data);
+                int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
+                int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
+                //if left child exists, and data is smaller than parent data, and left data is not the data we look for
+                if (crawler.Left != null && dir == -1 && left != 0) {
+                    crawler = crawler.Left;
                 }
-                else {
-                    int _cmp2 = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
-                    if (_cmp2 == -1) {
-                        //move left
-                        crawler = crawler.Left;
-                        //recurse
-                        FindParent(crawler, data);
-                    }
-                    else {
-                        //move Right
-                        crawler = crawler.Right;
-                        //recurse
-                        FindParent(crawler, data);
-                    }
+                //if right child exists, and data is larger than parent data, and right data is not data we are looking for
+                else if (crawler.Right != null && dir == 1 && right != 0) {
+                    crawler = crawler.Right;
                 }
-                
-            }
-            //if larger go right
-            else if (cmp == 1){
-                int _cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
-                if (_cmp == 0) {
-                    return crawler;
-                }
-                else {
-                    int _cmp2 = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
-                    if (_cmp2 == -1) {
-                        //move left
-                        crawler = crawler.Left;
-                        //recurse
-                        FindParent(crawler, data);
-                    }
-                    else {
-                        //move Right
-                        crawler = crawler.Right;
-                        //recurse
-                        FindParent(crawler, data);
-                    }
+                else if (left == 0 || right == 0) {
+                    parent = crawler;
                 }
             }
-            return crawler;
+            return parent;   
+        }
+        private Node GetMin(Node crawler) {
+            Node min = null;
+            min = crawler;
+            while (crawler != null) {
+                int cmp = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, min.Data);
+                if (cmp == -1) {
+                    min = crawler;
+                }
+                crawler = crawler.Left;
+            }
+            return min;
         }
     }
 }
