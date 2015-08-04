@@ -63,10 +63,15 @@ namespace DataStructures {
         }
         public void Remove(K key) {
             SLinkedList<KVP> bucket = buckets[hash(key)];
-            for (int i = bucket.Size; i >= 0; i--){
-                bucket.RemoveAt(i);
+            for (int i = bucket.Size-1; i >= 0; i--){
+                int result = System.Collections.Generic.Comparer<K>.Default.Compare(bucket[i].Key, key);
+                if (result == 0) {
+                    bucket.RemoveAt(i);
+                    size--;
+                    return;
+                }
             }
-            size--;
+            throw new System.Exception();
         }
         public int Hash(K key) {
             return hash(key) ;
@@ -84,21 +89,14 @@ namespace DataStructures {
             }
             set {
                 SLinkedList<KVP> bucket = buckets[hash(key)];
-                bool fail = false;
                 for (int i = 0; i < bucket.Size; i++) {
                     int result = System.Collections.Generic.Comparer<K>.Default.Compare(bucket[i].Key, key);
                     if (result == 0) {
                         bucket[i].Value = value;
-                        fail = false;
+                        return;
                     }
-                    else {
-                        fail = true;
-                    }
-                    
                 }
-                if (fail) {
-                    throw new SystemException();
-                }
+                throw new SystemException();
             }
         }
     }

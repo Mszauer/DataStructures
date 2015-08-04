@@ -12,7 +12,9 @@ namespace DataStructures {
 
         public static int CustomHash(string arg) {
             int result = 1;
-
+            foreach (char c in arg) {
+                result += System.Convert.ToInt32(c);
+            }
 
             return result % 100; // hash table is of size 100
         }
