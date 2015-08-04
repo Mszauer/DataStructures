@@ -60,15 +60,20 @@ namespace BinarySearchTree {
         }
         public bool Remove(T data) {
             Node crawler = root;
-            GetParent(crawler, data);
+            crawler = GetParent(crawler, data);
             //case 0
             int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
             int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
             if (left == 0) {
-                crawler.Left = null;
+                if (crawler.Left.Left == null && crawler.Left.Right == null) {
+                    crawler.Left = null;
+
+                }
             }
             else if (right == 0) {
-                crawler.Right = null;
+                if (crawler.Right.Left == null && crawler.Right.Right == null) {
+                    crawler.Right = null;
+                }
             }
             //case 1
             
