@@ -145,10 +145,19 @@ namespace BinarySearchTree {
                     return crawler;
                 }
                 else {
-                    //move left
-                    crawler = crawler.Left;
-                    //recurse
-                    FindParent(crawler, data);
+                    int _cmp2 = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, data);
+                    if (_cmp2 == -1) {
+                        //move left
+                        crawler = crawler.Left;
+                        //recurse
+                        FindParent(crawler, data);
+                    }
+                    else {
+                        //move Right
+                        crawler = crawler.Right;
+                        //recurse
+                        FindParent(crawler, data);
+                    }
                 }
                 
             }
@@ -159,8 +168,19 @@ namespace BinarySearchTree {
                     return crawler;
                 }
                 else {
-                    crawler = crawler.Right;
-                    FindParent(crawler, data);
+                    int _cmp2 = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, data);
+                    if (_cmp2 == -1) {
+                        //move left
+                        crawler = crawler.Left;
+                        //recurse
+                        FindParent(crawler, data);
+                    }
+                    else {
+                        //move Right
+                        crawler = crawler.Right;
+                        //recurse
+                        FindParent(crawler, data);
+                    }
                 }
             }
             return crawler;
