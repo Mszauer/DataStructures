@@ -109,6 +109,7 @@ namespace BinarySearchTree {
                 else if (crawler.Right != null && dir == 1 && right != 0) {
                     crawler = crawler.Right;
                 }
+                //if either left or right child is the data we are looking for, set parent to current
                 else if (left == 0 || right == 0) {
                     parent = crawler;
                 }
