@@ -27,10 +27,12 @@ namespace DataStructures{
                     Console.WriteLine("\t exit");
                 }
                 if (command == "List" || command == "list") {
+                    //write out contents of currently loaded list
                     Console.Clear();
                 }
                 else if (command == "exit" || command == "Exit") {
-                    Environment.Exit(0);
+                    
+                    break;
                 }
                 else if (words[0] == "add") {
                     data.Add(words[1], System.Convert.ToInt32(words[2]));
@@ -50,7 +52,13 @@ namespace DataStructures{
                 else if (words[0] == "saveBin") {
                     FileStream stream = new FileStream("C:/Users/User/Desktop/out.bin", FileMode.CreateNew);
                     BinaryWriter writer = new BinaryWriter(stream);
-
+                    Console.WriteLine("Writing data now...");
+                    foreach (char k in words[1]) {
+                        writer.Write((byte)k);
+                    }
+                    foreach (char v in words[2]) {
+                        writer.Write((byte)v);
+                    }
                     writer.Dispose();
                     stream.Dispose();
                 }
