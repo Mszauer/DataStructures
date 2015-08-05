@@ -44,20 +44,38 @@ namespace DataStructures{
                     data[words[1]] = System.Convert.ToInt32(words[2]);
                 }
                 else if (words[0] == "saveText") {
-
+                    using (TextWriter writer = File.CreateText("out.txt")) {
+                        Console.WriteLine("Writing data now...");
+                        SLinkedList<string> keys = data.Keys;
+                        for (int i = 0 ; i < keys.Size; i++){
+                            string key = keys[i];
+                            int value = data[key];
+                            writer.WriteLine("kvp-Key: {0} kvp-Value: {1}",key,value);
+                        }
+                    }
                 }
                 else if (words[0] == "loadText") {
+                    if (File.Exists(words[1])) {
+                        Console.WriteLine("Loading Data...");
+                        using (TextReader reader = File.OpenText(words[1])) {
+                            if (reader.Read() != null) {
 
+                            }
+                        }
+                    }
+                    else {
+                        Console.WriteLine("File not found");
+                    }
                 }
                 else if (words[0] == "saveBin") {
                     FileStream stream = new FileStream(words[1], FileMode.CreateNew);
                     BinaryWriter writer = new BinaryWriter(stream);
                     Console.WriteLine("Writing data now...");
                     SLinkedList<string> keys = data.Keys;
-                    for (int i = 0 ; i < keys.Size ; i++){
+                    writer.Write((byte)data.Size);
+                    for (int i = 0; i < keys.Size; i++) {
                         string key = keys[i];
                         int value = data[key];
-                        writer.Write((byte)data.Size);
                         writer.Write((byte)key.Length);
                         foreach (char c in key) {
                             writer.Write((byte)c);
@@ -70,12 +88,13 @@ namespace DataStructures{
                 }
                 else if (words[0] == "loadBin") {
                     if (File.Exists(words[1])) {
+                        Console.WriteLine("Loading Data...");
                         using (BinaryReader reader = new BinaryReader(File.Open(words[1], FileMode.Open))) {
                             int size = reader.ReadByte();
                             for (int i = 0; i < size; i++) {
                                 int length = (int)reader.ReadByte();
                                 string key = "";
-                                for (int i = 0; i < length; i++) {
+                                for (int j = 0; j < length; j++) {
                                     key += reader.ReadChar();
                                 }
                                 int value = reader.ReadInt32();
