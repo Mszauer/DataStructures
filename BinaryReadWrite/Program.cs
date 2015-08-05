@@ -57,8 +57,11 @@ namespace DataStructures{
                     for (int i = 0 ; i < keys.Size ; i++){
                         string key = keys[i];
                         int value = data[key];
+                        writer.Write((byte)key.Length);
                         writer.Write((byte)value);
-                        writer.Write(key);
+                        foreach (char c in key) {
+                            writer.Write((byte)c);
+                        }
                     }
                     writer.Dispose();
                     stream.Dispose();
