@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinarySearchTree {
+namespace DataStructures {
     class BST <T>{
         public delegate void TraverseNode(T data);
         class Node {
@@ -100,25 +100,6 @@ namespace BinarySearchTree {
                     return true;
                 }
             }
-            //case 1
-            else if (remove.Left != null || remove.Right != null) {
-                if (remove.Left != null && parent.Left == remove) {
-                    parent.Left = remove.Left;
-                    return true;
-                }
-                else if (remove.Right != null && parent.Right == remove) {
-                    parent.Right = remove.Right;
-                    return true;
-                }
-                else if (remove.Left != null && parent.Right == remove) {
-                    parent.Right = remove.Left;
-                    return true;
-                }
-                else if(remove.Right != null && parent.Left == remove) {
-                    parent.Left = remove.Right;
-                    return true;
-                }
-            }
             //case 2
             else if (remove.Left != null && remove.Right != null) {
                 Node crawler = remove;
@@ -141,9 +122,68 @@ namespace BinarySearchTree {
                     return Remove(crawler.Data);
                 }
             }
-
-            
+            //case 1
+            else if (remove.Left != null || remove.Right != null) {
+                if (remove.Left != null && parent.Left == remove) {
+                    parent.Left = remove.Left;
+                    return true;
+                }
+                else if (remove.Right != null && parent.Right == remove) {
+                    parent.Right = remove.Right;
+                    return true;
+                }
+                else if (remove.Left != null && parent.Right == remove) {
+                    parent.Right = remove.Left;
+                    return true;
+                }
+                else if(remove.Right != null && parent.Left == remove) {
+                    parent.Left = remove.Right;
+                    return true;
+                }
+            }
             return false;
+        }
+        public void InOrderTraversal(TraverseNode func) {
+            Vector<Node> queue = new Vector<Node>();
+            queue.Append(root);
+            do {
+                if (queue[0].Left != null){
+                    queue.Append(queue.[0].Left);
+                }
+                func(queue[0].Data);
+                if (queue[0].Right != null){
+                    queue.Append(queue[0].Right);
+                }
+                queue.RemoveAt(0);
+            } while (queue.Size != 0);
+        }
+        public void PreTraversal(TraverseNode func){
+            Vector<Node> queue = new Vector<Node>();
+            queue.Append(root);
+            do {
+                func(queue[0].Data);
+                if (queue[0].Left != null){
+                    queue.Append(queue.[0].Left);
+                }
+                if (queue[0].Right != null){
+                    queue.Append(queue[0].Right);
+                }
+                queue.RemoveAt(0);
+            } while (queue.Size != 0);
+        }
+        public void PostTraversal(TraverseNode func) {
+            Vector<Node> queue = new Vector<Node>();
+            queue.Append(root);
+            do {
+                if (queue[0].Left != null){
+                    queue.Append(queue.[0].Left);
+                }
+                if (queue[0].Right != null){
+                    queue.Append(queue[0].Right);
+                }
+                func(queue[0].Data);
+                queue.RemoveAt(0);
+            } while (queue.Size != 0);
         }
         private void AddChild(Node crawler,T data) { //goes down BST and assigns New Node
             //compare values
