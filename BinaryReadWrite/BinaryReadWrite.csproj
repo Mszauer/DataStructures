@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>8247a6c7-9e79-46a1-bf76-ea3be878daa9</ProjectGuid>
+    <ProjectGuid>{1AA9E733-9474-4F72-9822-63B287267F0E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BinaryReadWrite</RootNamespace>
@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\HashTables\HashTable.cs">
+      <Link>HashTable.cs</Link>
+    </Compile>
+    <Compile Include="..\LinkedList\SLinkedList.cs">
+      <Link>SLinkedList.cs</Link>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

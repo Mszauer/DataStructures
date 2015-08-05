@@ -27,7 +27,13 @@ namespace DataStructures{
                     Console.WriteLine("\t exit");
                 }
                 if (command == "List" || command == "list") {
-                    //write out contents of currently loaded list
+                    SLinkedList<string> keys = data.Keys;
+                    for (int i = 0; i < keys.Size; i++) {
+                        string key = keys[i];
+                        int value = data[key];
+                        Console.WriteLine(value + " " + key);
+                    }
+                    Console.ReadLine();
                     Console.Clear();
                 }
                 else if (command == "exit" || command == "Exit") {
