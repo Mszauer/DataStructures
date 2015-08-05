@@ -83,7 +83,9 @@ namespace BinarySearchTree {
                     while (crawler.Left != null) {
                         crawler = crawler.Left;
                     }
+                    T temp = root.Data;
                     root.Data = crawler.Data;
+                    crawler.Data = temp;
                     return Remove(crawler.Data);
                 }
             }
@@ -133,7 +135,9 @@ namespace BinarySearchTree {
                     while (crawler.Left != null) {
                         crawler = crawler.Left;
                     }
+                    T temp = remove.Data;
                     remove.Data = crawler.Data;
+                    crawler.Data = temp;
                     return Remove(crawler.Data);
                 }
             }
