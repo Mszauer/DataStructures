@@ -58,7 +58,7 @@ namespace DataStructures{
                     if (File.Exists(words[1])) {
                         Console.WriteLine("Loading Data...");
                         using (TextReader reader = File.OpenText(words[1])) {
-                            if (reader.ReadLine() != null) {
+                            while (reader.ReadLine() != null) {
                                 string content = reader.ReadLine();
                                 string[] add = content.Split(' ');
                                 data.Add(add[1], System.Convert.ToInt32(add[2]));
