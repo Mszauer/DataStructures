@@ -57,21 +57,39 @@ namespace DataStructures{
                     for (int i = 0 ; i < keys.Size ; i++){
                         string key = keys[i];
                         int value = data[key];
+                        writer.Write((byte)data.Size);
                         writer.Write((byte)key.Length);
                         foreach (char c in key) {
                             writer.Write((byte)c);
                         }
-                        writer.Write((byte)value);
-                        
+                        //always 4bytes
+                        writer.Write((int)value);
                     }
                     writer.Dispose();
                     stream.Dispose();
                 }
                 else if (words[0] == "loadBin") {
-
+                    if (File.Exists(words[1])) {
+                        using (BinaryReader reader = new BinaryReader(File.Open(words[1], FileMode.Open))) {
+                            int size = reader.ReadByte();
+                            for (int i = 0; i < size; i++) {
+                                int length = (int)reader.ReadByte();
+                                string key = "";
+                                for (int i = 0; i < length; i++) {
+                                    key += reader.ReadChar();
+                                }
+                                int value = reader.ReadInt32();
+                                data.Add(key, value);
+                            }
+                        }
+                    }
+                    else {
+                        Console.WriteLine("File not found");
+                    }
                 }
             } while (true);
         }
+            
         public static int CustomHash(string arg) {
             int result = 1;
             foreach (char c in arg) {
