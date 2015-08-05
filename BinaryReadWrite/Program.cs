@@ -50,14 +50,15 @@ namespace DataStructures{
 
                 }
                 else if (words[0] == "saveBin") {
-                    FileStream stream = new FileStream("C:/Users/User/Desktop/out.bin", FileMode.CreateNew);
+                    FileStream stream = new FileStream(words[1], FileMode.CreateNew);
                     BinaryWriter writer = new BinaryWriter(stream);
                     Console.WriteLine("Writing data now...");
-                    foreach (char k in words[1]) {
-                        writer.Write((byte)k);
-                    }
-                    foreach (char v in words[2]) {
-                        writer.Write((byte)v);
+                    SLinkedList<string> keys = data.Keys;
+                    for (int i = 0 ; i < keys.Size ; i++){
+                        string key = keys[i];
+                        int value = data[key];
+                        writer.Write((byte)value);
+                        writer.Write(key);
                     }
                     writer.Dispose();
                     stream.Dispose();
