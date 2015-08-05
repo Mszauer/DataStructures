@@ -148,7 +148,7 @@ namespace DataStructures {
             queue.Append(root);
             do {
                 if (queue[0].Left != null){
-                    queue.Append(queue.[0].Left);
+                    queue.Append(queue[0].Left);
                 }
                 func(queue[0].Data);
                 if (queue[0].Right != null){
@@ -163,7 +163,7 @@ namespace DataStructures {
             do {
                 func(queue[0].Data);
                 if (queue[0].Left != null){
-                    queue.Append(queue.[0].Left);
+                    queue.Append(queue[0].Left);
                 }
                 if (queue[0].Right != null){
                     queue.Append(queue[0].Right);
@@ -176,7 +176,7 @@ namespace DataStructures {
             queue.Append(root);
             do {
                 if (queue[0].Left != null){
-                    queue.Append(queue.[0].Left);
+                    queue.Append(queue[0].Left);
                 }
                 if (queue[0].Right != null){
                     queue.Append(queue[0].Right);
