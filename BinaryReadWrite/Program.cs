@@ -50,7 +50,7 @@ namespace DataStructures{
                         for (int i = 0 ; i < keys.Size; i++){
                             string key = keys[i];
                             int value = data[key];
-                            writer.WriteLine("kvp-Key: {0} kvp-Value: {1}",key,value);
+                            writer.WriteLine(key + " " + value);
                         }
                     }
                 }
@@ -58,8 +58,10 @@ namespace DataStructures{
                     if (File.Exists(words[1])) {
                         Console.WriteLine("Loading Data...");
                         using (TextReader reader = File.OpenText(words[1])) {
-                            if (reader.Read() != null) {
-
+                            if (reader.ReadLine() != null) {
+                                string content = reader.ReadLine();
+                                string[] add = content.Split(' ');
+                                data.Add(add[1], System.Convert.ToInt32(add[2]));
                             }
                         }
                     }
@@ -83,6 +85,7 @@ namespace DataStructures{
                         //always 4bytes
                         writer.Write((int)value);
                     }
+                    Console.WriteLine("Filed Saved");
                     writer.Dispose();
                     stream.Dispose();
                 }
