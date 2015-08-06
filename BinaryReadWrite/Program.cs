@@ -13,7 +13,7 @@ namespace DataStructures{
             Console.WriteLine("Enter a command, or help for help");
             
             do {
-                string command = Console.ReadLine();
+                string command = Console.ReadLine().ToLower();
                 string[] words = command.Split(' ');
                 if (command == "help" || command == "Help") {
                     Console.WriteLine("Available commands:");
@@ -24,21 +24,24 @@ namespace DataStructures{
                     Console.WriteLine("\t loadText < path >");
                     Console.WriteLine("\t saveBin < path >");
                     Console.WriteLine("\t loadBin < path >");
+                    Console.WriteLine("\t clear");
                     Console.WriteLine("\t list");
                     Console.WriteLine("\t exit");
                 }
-                if (command == "List" || command == "list") {
+                if (command == "list") {
                     SLinkedList<string> keys = data.Keys;
                     for (int i = 0; i < keys.Size; i++) {
                         string key = keys[i];
                         int value = data[key];
                         Console.WriteLine(value + " " + key);
                     }
-                    Console.ReadLine();
-                    Console.Clear();
                 }
-                else if (command == "exit" || command == "Exit") {
+                else if (command == "Exit") {
                     break;
+                }
+                else if (command == "clear") {
+                    Console.Clear();
+                    Console.WriteLine("Enter a command, or help for help");
                 }
                 else if (words[0] == "add") {
                     data.Add(words[1], System.Convert.ToInt32(words[2]));
@@ -65,10 +68,11 @@ namespace DataStructures{
                     if (File.Exists(words[1])) {
                         Console.WriteLine("Loading Data...");
                         using (TextReader reader = File.OpenText(words[1])) {
-                            while (reader.ReadLine() != null) {
-                                string content = reader.ReadLine();
+                            string content = reader.ReadLine();
+                            while (content != null) {
                                 string[] add = content.Split(' ');
-                                data.Add(add[1], System.Convert.ToInt32(add[2]));
+                                data.Add(add[0], System.Convert.ToInt32(add[1]));
+                                content = reader.ReadLine();
                             }
                         }
                         Console.WriteLine("Data has been loaded.");
