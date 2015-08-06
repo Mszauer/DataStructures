@@ -25,6 +25,7 @@ namespace DataStructures{
                     Console.WriteLine("\t loadBin < path >");
                     Console.WriteLine("\t list");
                     Console.WriteLine("\t exit");
+                    Console.ReadLine();
                 }
                 if (command == "List" || command == "list") {
                     SLinkedList<string> keys = data.Keys;
@@ -110,6 +111,7 @@ namespace DataStructures{
                                 data.Add(key, value);
                             }
                         }
+                        Console.ReadLine();
                     }
                     else {
                         Console.WriteLine("File not found");
