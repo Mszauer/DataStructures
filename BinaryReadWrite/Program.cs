@@ -11,9 +11,10 @@ namespace DataStructures{
         static void Main(string[] args) {
             HashTable<string, int> data = new HashTable<string, int>(100, CustomHash);
             Console.WriteLine("Enter a command, or help for help");
-            string command = Console.ReadLine();
-            string[] words = command.Split(' ');
+            
             do {
+                string command = Console.ReadLine();
+                string[] words = command.Split(' ');
                 if (command == "help" || command == "Help") {
                     Console.WriteLine("Available commands:");
                     Console.WriteLine("\t add < key> < value >");
@@ -25,7 +26,6 @@ namespace DataStructures{
                     Console.WriteLine("\t loadBin < path >");
                     Console.WriteLine("\t list");
                     Console.WriteLine("\t exit");
-                    Console.ReadLine();
                 }
                 if (command == "List" || command == "list") {
                     SLinkedList<string> keys = data.Keys;
@@ -38,7 +38,6 @@ namespace DataStructures{
                     Console.Clear();
                 }
                 else if (command == "exit" || command == "Exit") {
-                    
                     break;
                 }
                 else if (words[0] == "add") {
@@ -51,7 +50,7 @@ namespace DataStructures{
                     data[words[1]] = System.Convert.ToInt32(words[2]);
                 }
                 else if (words[0] == "saveText") {
-                    using (TextWriter writer = File.CreateText("out.txt")) {
+                    using (TextWriter writer = File.CreateText(words[1])) {
                         Console.WriteLine("Writing data now...");
                         SLinkedList<string> keys = data.Keys;
                         for (int i = 0 ; i < keys.Size; i++){
@@ -59,6 +58,7 @@ namespace DataStructures{
                             int value = data[key];
                             writer.WriteLine(key + " " + value);
                         }
+                        Console.WriteLine("File has been saved");
                     }
                 }
                 else if (words[0] == "loadText") {
@@ -71,6 +71,7 @@ namespace DataStructures{
                                 data.Add(add[1], System.Convert.ToInt32(add[2]));
                             }
                         }
+                        Console.WriteLine("Data has been loaded.");
                     }
                     else {
                         Console.WriteLine("File not found");
@@ -111,7 +112,7 @@ namespace DataStructures{
                                 data.Add(key, value);
                             }
                         }
-                        Console.ReadLine();
+                        Console.WriteLine("Data has been loaded.");
                     }
                     else {
                         Console.WriteLine("File not found");
