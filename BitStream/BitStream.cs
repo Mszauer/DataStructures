@@ -29,13 +29,20 @@ namespace DataStructures {
         }
         public byte ByteAt(int index) {
             //return the byte from byte vector at given index
+            return bytes[index];
         }
         public bool BitAt(int index) {
-            //return specific bit
-            //find the byte the bit will be in
+            //returns specific bit
+            //find the byte the bit will be in and bit index 
+            //(is index the byte at index or just general index)?
+            int byteIndex = index / 8;
+            int bitIndex = index - byteIndex * 8;// what this will always give 0, it negates byteIndex?
             //mask it out
+            byte bitMask = (byte)(1 << 7 - bitIndex);
             //return value
             //can be on or off aka true or false
+            bool set = (index & bitMask) != 0;
+            return set;
         }
         public void Append(bool state) {
             //finds current byte
@@ -60,6 +67,7 @@ namespace DataStructures {
             //loop until size
             //foreach index call BitAt
             //returns false add 0, true return 1 to bitat
+            return " ";
         }
     }
 }
