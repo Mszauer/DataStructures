@@ -58,12 +58,17 @@ namespace DataStructures {
                 byte bitMask = (byte)(1 << 7 - bitIndex);
                 // TODO: Or the value of bytes at byteIndex with the new mask. 
                 //   Make sure the result is re-assigned back into bytes
+                bytes[byteIndex] = (byte)(bitMask | bytes[byteIndex]);
             }
             //incease size
             size++;
         }
         public void Append(BitStream stream) {
             //loop through all of the bits in bitstream
+            for (int i = 0; i < stream.ByteCount; i++) {
+                bytes.Append(stream.Bytes[i]);
+                size++;
+            }
             //append them to this one
             //just call Append(bool)
         }
