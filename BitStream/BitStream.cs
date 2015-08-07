@@ -34,14 +34,13 @@ namespace DataStructures {
         public bool BitAt(int index) {
             //returns specific bit
             //find the byte the bit will be in and bit index 
-            //(is index the byte at index or just general index)?
             int byteIndex = index / 8;
             int bitIndex = index - byteIndex * 8;// what this will always give 0, it negates byteIndex?
             //mask it out
             byte bitMask = (byte)(1 << 7 - bitIndex);
-            //return value
             //can be on or off aka true or false
-            bool set = (index & bitMask) != 0;
+            bool set = (ByteAt(byteIndex) & bitMask) != 0;
+            //return value
             return set;
         }
         public void Append(bool state) {
