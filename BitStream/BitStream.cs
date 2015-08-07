@@ -51,7 +51,7 @@ namespace DataStructures {
             // TODO: Find byte index
             int byteIndex = size / 8;
             // TODO: Find bit index
-            int bitIndex = byteIndex * 8;
+            int bitIndex = size - byteIndex * 8;
             // TODO: If the bit is on (the argument is true
             if (state) {
                 // TODO: Create a byte mask out of bit index
@@ -64,13 +64,22 @@ namespace DataStructures {
             size++;
         }
         public void Append(BitStream stream) {
-            //loop through all of the bits in bitstream
-            for (int i = 0; i < stream.ByteCount; i++) {
-                bytes.Append(stream.Bytes[i]);
-                size++;
+            // TODO: Cache stream size as a member variable. We do this because
+            int streamSize = stream.BitCount;
+            //   it's valid to add elements mid loop. If we do this however, 
+            //   we will face an infinite loop if the stream passed in is the
+            //   same stream we are writing to. To avoid this scenario, we need
+            //   a 'Stream Size' to be recorded in a variable local to this function
+            //   we loop on this integer, not stream.Size.
+            // TODO: (Inside the loop) Get every bit, and call the existing Append function
+            for (int i = 0; i < streamSize; i++) {
+                if (stream.BitAt(i)) {
+                    Append(true);
+                }
+                else{
+                    Append(false);
+                }
             }
-            //append them to this one
-            //just call Append(bool)
         }
         public void Append(string complicated) {
             //takes in string of 0's and 1's
@@ -83,7 +92,7 @@ namespace DataStructures {
             //return large string with 0's or 1's for every bit
             string results = "";
             //loop until size
-            for (int i = 0; i < ByteCount; i++) {
+            for (int i = 0; i < size; i++) {
                 //foreach index call BitAt
                 if (BitAt(i) == true) {
                     //on, add 1 to string
