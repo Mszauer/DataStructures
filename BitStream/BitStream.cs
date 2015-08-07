@@ -48,15 +48,15 @@ namespace DataStructures {
             if (size % 8 == 0) {
                 bytes.Append(0);
             }
-            // TODO: Find byte index
+            // Find byte index
             int byteIndex = size / 8;
-            // TODO: Find bit index
+            // Find bit index
             int bitIndex = size - byteIndex * 8;
-            // TODO: If the bit is on (the argument is true
+            // If the bit is on (the argument is true
             if (state) {
-                // TODO: Create a byte mask out of bit index
+                // Create a byte mask out of bit index
                 byte bitMask = (byte)(1 << 7 - bitIndex);
-                // TODO: Or the value of bytes at byteIndex with the new mask. 
+                // OR the value of bytes at byteIndex with the new mask. 
                 //   Make sure the result is re-assigned back into bytes
                 bytes[byteIndex] = (byte)(bitMask | bytes[byteIndex]);
             }
@@ -64,14 +64,14 @@ namespace DataStructures {
             size++;
         }
         public void Append(BitStream stream) {
-            // TODO: Cache stream size as a member variable. We do this because
+            // Cache stream size as a member variable. We do this because
             int streamSize = stream.BitCount;
             //   it's valid to add elements mid loop. If we do this however, 
             //   we will face an infinite loop if the stream passed in is the
             //   same stream we are writing to. To avoid this scenario, we need
             //   a 'Stream Size' to be recorded in a variable local to this function
             //   we loop on this integer, not stream.Size.
-            // TODO: (Inside the loop) Get every bit, and call the existing Append function
+            //(Inside the loop) Get every bit, and call the existing Append function
             for (int i = 0; i < streamSize; i++) {
                 if (stream.BitAt(i)) {
                     Append(true);
@@ -82,11 +82,17 @@ namespace DataStructures {
             }
         }
         public void Append(string complicated) {
-            //takes in string of 0's and 1's
-            //if anything is not 0 or 1, throw exception
-            //loop through string
-            //if char is 0 call Append(false)
-            //if char is 1 call append(true)
+            foreach (char c in complicated) {
+                if (c == '1') {
+                    Append(true);
+                }
+                else if (c == '0') {
+                    Append(false);
+                }
+                else {
+                    throw new SystemException();
+                }
+            }
         }
         public string ToString() {
             //return large string with 0's or 1's for every bit
