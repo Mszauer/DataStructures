@@ -229,7 +229,7 @@ namespace DataStructures {
                 if (dir == 0) {
                     return crawler;
                 }
-                else if (dir == -1) {
+                else if (dir == 1) {
                     crawler = crawler.Left;
                 }
                 else {
@@ -243,6 +243,7 @@ namespace DataStructures {
             Node crawler = root;
             while (crawler != null) {
                 int dir = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Data, child.Data);
+                //crawler.Left and Crawler.Right = null when leaf nodes. 
                 int left = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Left.Data, child.Data);
                 int right = System.Collections.Generic.Comparer<T>.Default.Compare(crawler.Right.Data, child.Data);
                 //if left child exists, and data is smaller than parent data, and left data is not the data we look for
