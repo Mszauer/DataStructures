@@ -44,9 +44,24 @@ namespace DataStructures {
             return set;
         }
         public void Append(bool state) {
-            //finds current byte
-            //then sets next available bit to state
-            //if no more bytes a new one is appended
+             //if no more room, create more
+            if (size % 8 == 0) {
+                bytes.Append(0);
+            }
+            // TODO: Find byte index
+
+            // TODO: Find bit index
+
+            // TODO: If the bit is on (the argument is true
+            if (state) {
+
+            }
+                // TODO: Create a byte mask out of bit index
+                // TODO: Or the value of bytes at byteIndex with the new mask. 
+                //   Make sure the result is re-assigned back into bytes
+
+            // TODO: Increase size by 1
+            size++;
         }
         public void Append(BitStream stream) {
             //loop through all of the bits in bitstream
@@ -61,12 +76,21 @@ namespace DataStructures {
             //if char is 1 call append(true)
         }
         public string ToString() {
-            //convert each bit to a string
             //return large string with 0's or 1's for every bit
+            string results = "";
             //loop until size
-            //foreach index call BitAt
-            //returns false add 0, true return 1 to bitat
-            return " ";
+            for (int i = 0; i < ByteCount; i++) {
+                //foreach index call BitAt
+                if (BitAt(i) == true) {
+                    //on, add 1 to string
+                    results += "1";
+                }
+                else {
+                    //off, add 0 to string
+                    results += "0";
+                }
+            }
+            return results;
         }
     }
 }
