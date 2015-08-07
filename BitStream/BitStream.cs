@@ -49,18 +49,17 @@ namespace DataStructures {
                 bytes.Append(0);
             }
             // TODO: Find byte index
-
+            int byteIndex = size / 8;
             // TODO: Find bit index
-
+            int bitIndex = byteIndex * 8;
             // TODO: If the bit is on (the argument is true
             if (state) {
-
-            }
                 // TODO: Create a byte mask out of bit index
+                byte bitMask = (byte)(1 << 7 - bitIndex);
                 // TODO: Or the value of bytes at byteIndex with the new mask. 
                 //   Make sure the result is re-assigned back into bytes
-
-            // TODO: Increase size by 1
+            }
+            //incease size
             size++;
         }
         public void Append(BitStream stream) {
