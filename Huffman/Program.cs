@@ -69,8 +69,130 @@ namespace DataStructures {
                 }
             }
 
+            Huffman.Node huffmanTree = Huffman.MakeHuffmanTree(frequencyTable);
+            PrintTree(huffmanTree);
+            SLinkedList<Huffman.Node> allNodes = new SLinkedList<Huffman.Node>();
+            SLinkedList<Huffman.Node> queue = new SLinkedList<Huffman.Node>();
+            queue.AddTail(huffmanTree);
+            while (queue.Size > 0) {
+                allNodes.AddTail(queue[0]);
+
+                if (queue[0].Left != null) {
+                    queue.AddTail(queue[0].Left);
+                }
+
+                if (queue[0].Right != null) {
+                    queue.AddTail(queue[0].Right);
+                }
+
+                queue.RemoveAt(0);
+            }
+
+
+            SLinkedList<char> expectedNodeData = new SLinkedList<char>();
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('i');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('s');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail(' ');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('\0');
+            expectedNodeData.AddTail('e');
+            expectedNodeData.AddTail('n');
+            expectedNodeData.AddTail('p');
+            expectedNodeData.AddTail('r');
+            expectedNodeData.AddTail('a');
+            expectedNodeData.AddTail('d');
+            expectedNodeData.AddTail('g');
+            expectedNodeData.AddTail('h');
+            expectedNodeData.AddTail('l');
+            expectedNodeData.AddTail('m');
+            expectedNodeData.AddTail('o');
+            expectedNodeData.AddTail('t');
+            expectedNodeData.AddTail('v');
+            expectedNodeData.AddTail('w');
+
+            SLinkedList<int> expectedNodeFrequency = new SLinkedList<int>();
+            expectedNodeFrequency.AddTail(34);
+            expectedNodeFrequency.AddTail(19);
+            expectedNodeFrequency.AddTail(15);
+            expectedNodeFrequency.AddTail(11);
+            expectedNodeFrequency.AddTail(8);
+            expectedNodeFrequency.AddTail(8);
+            expectedNodeFrequency.AddTail(7);
+            expectedNodeFrequency.AddTail(6);
+            expectedNodeFrequency.AddTail(5);
+            expectedNodeFrequency.AddTail(4);
+            expectedNodeFrequency.AddTail(4);
+            expectedNodeFrequency.AddTail(4);
+            expectedNodeFrequency.AddTail(4);
+            expectedNodeFrequency.AddTail(4);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(2);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+            expectedNodeFrequency.AddTail(1);
+
+            for (int i = 0; i < allNodes.Size; ++i) {
+                if (allNodes[i].Data != expectedNodeData[i]) {
+                    Error("Error somewhere in huffman tree");
+                }
+                if (allNodes[i].Frequency != expectedNodeFrequency[i]) {
+                    Error("Error somewhere in huffman tree");
+                }
+            }
 
             Console.ReadLine();
+        }
+
+        static void PrintTree(Huffman.Node node, int indent = 0) {
+            if (node == null) {
+                return;
+            }
+            for (int i = 0; i < indent; ++i) {
+                Console.Write('\t');
+            }
+
+            if (!node.IsLeaf) {
+                ConsoleColor old = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.Write("*");
+                Console.ForegroundColor = old;
+            }
+            else {
+                Console.Write(node.Data);
+            }
+
+            Console.WriteLine(":" + node.Frequency);
+
+            PrintTree(node.Left, indent + 1);
+            PrintTree(node.Right, indent + 1);
         }
     }
 }
