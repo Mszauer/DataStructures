@@ -34,7 +34,7 @@ namespace DataStructures {
                 n.Data = keys[i];
                 //node frequency is going to be the value for the current key (table[key])
                 n.Frequency = frequencyTable[keys[i]];
-                //add this new node to tthe end(tail) of the loose nodes list
+                //add this new node to the end(tail) of the loose nodes list
                 looseNodes.AddTail(n);
             }//end loop
 
@@ -62,7 +62,7 @@ namespace DataStructures {
                 //Repeat above steps for a new local node called right
                 Node right = looseNodes[0];
                 for (int i = 0; i < looseNodes.Size; i++) {
-                    if (right.Frequency < looseNodes[i].Frequency) {
+                    if (right.Frequency > looseNodes[i].Frequency) {
                         right = looseNodes[i];
                     }
                 }
@@ -84,7 +84,7 @@ namespace DataStructures {
             //return [0] of the loose list
             return looseNodes[0];
             //end loop ?? what loop
-
+        
         }
 
         public static HashTable<char, int> MakeFrequencyTable(string input) {
