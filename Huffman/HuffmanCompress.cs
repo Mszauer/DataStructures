@@ -14,7 +14,7 @@ namespace DataStructures {
         }
         public static byte[] Compress(string toCompress) {
             //then at the end of the function we're going to convert it to an array, and return it.
-            SLinkedList<byte> result = new SLinkedList<byte>();
+            DLinkedList<byte> result = new DLinkedList<byte>();
             
             //make an encoding table out of the huffman tree, out of a frequency table
             HashTable<char, int> FreqTable = MakeFrequencyTable(toCompress); //copy to memory because we access it multiple times
@@ -24,7 +24,7 @@ namespace DataStructures {
             byte[] freqToByte = IntToBytes(FreqTable.Size);
             //and all four bytes to the resuld linked list
             for (int i = 0; i < freqToByte.Length; i++) {
-                result.AddHead(freqToByte[i]);
+                result.AddTail(freqToByte[i]);
             }
 
             //next loop through the frequency table
@@ -33,13 +33,13 @@ namespace DataStructures {
                 //convert current key to two bytes
                 byte[] key = CharToBytes(list[i]);
                 //add both bytes to the linked list
-                result.AddHead(key[0]);
-                result.AddHead(key[1]); // O(1) vs O(n) even though it is trivial enough to be small
+                result.AddTail(key[0]);
+                result.AddTail(key[1]); // O(1) vs O(n) even though it is trivial enough to be small
                 //convert the current value to foure bytes,
                 byte[] value = IntToBytes(FreqTable[list[i]]);
                 //add alll four bytes to the linked list
                 for (int j = 0; j < value.Length; j++) {
-                    result.AddHead(value[j]);
+                    result.AddTail(value[j]);
                 }
             }//end loop
                 

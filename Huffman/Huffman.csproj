@@ -53,6 +53,7 @@
     <Compile Include="..\Vector\Vector.cs">
       <Link>Vector.cs</Link>
     </Compile>
+    <Compile Include="DLinkedList.cs" />
     <Compile Include="Huffman.cs" />
     <Compile Include="HuffmanCompress.cs" />
     <Compile Include="HuffmanEncoding.cs" />
