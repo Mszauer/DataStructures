@@ -37,8 +37,7 @@ namespace DataStructures {
                     SLinkedList<char> list = local.Keys;
                     for (int i = 0; i < list.Size; i++) {
                         //add each key value pair to this function's result hash table
-                        result.Add(list[i], stream); //what bitstream?
-                        Console.WriteLine("added: " + System.Convert.ToString(list[i]) + " " + stream);
+                        result.Add(list[i], local[list[i]]);
                         //we do this because the results of each recursion bubble back up to the top.
                         //by the time the root returns, all of the leaf nodes will be in the final hash table
                     }//end loop
@@ -51,8 +50,7 @@ namespace DataStructures {
                     HashTable<char, BitStream> local = MakeEncodingTable(node.Right, stream);
                     SLinkedList<char> list = local.Keys;
                     for (int i = 0; i < list.Size; i++) {
-                        result.Add(list[i], stream);
-                        Console.WriteLine("added: " + list[i] + " " + stream);
+                        result.Add(list[i], local[list[i]]);
                     }
                 }//end else
             }
