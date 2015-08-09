@@ -41,41 +41,51 @@ namespace DataStructures {
             // Loop 0 to frequencyTableSize
             for (int i = 0; i < frequencyTableSize; i++) {
                 // Read in a character for the table key (add 2 to offset after)
-
+                char c = BytesToChar(toInflate, byteOffset);
+                byteOffset += 2;
                 // Read in an integer for the value (add 4 to offset after)
-
+                int n = BytesToInt(toInflate, byteOffset);
+                byteOffset += 4;
                 // Add the key and vaue to the frequencyTable
+                frequencyTable.Add(c, n);
             }// end loop
 
                 // After the frequency table, is the number of bits that our compressed data consists of
                 // Read an integer from the byte array, lets call it numBits (how many to be read)
+            int numBits = toInflate.Length * 8;
                 // Make a new integer call it bitsRead and set it to 0. We keep track of how many bits need
                 // to be red, and how many HAVE been read
+            int bitsRead = 0;
 
                 // Make a huffman tree out of the frequency table
-
+            Node huffmanTree = MakeHuffmanTree(frequencyTable);
                 // While the bits read is less than the number of bits
+            while (bitsRead < numBits) {
                 // Make a local node reference (I called mine root) and set it
                 // equal to the root of the tree
+                Node root = huffmanTree;
                 // While the node is not a leaf
-                // Read one bit from the input stream and see if its set
-                // we need to multiply readerOffset by 8, because reader
-                // offset is in bytes, but GetBit needs a bit offset (code included)
-                if (GetBit(toInflate, readerOffset * 8 + bitsRead)) {
-                    // If the bit was on, go down the right branch
-                    root = root.Right;
-                }
-                else {
-                    // If the bit was off, go down the left branch
-                    root = root.Left;
-                }
-            // Add one to bits read
-            // End loop
-
-            // Add root.Data to the result string
-            // End loop
-
+                while (root.Left != null && root.Right != null) {
+                    // Read one bit from the input stream and see if its set
+                    // we need to multiply readerOffset by 8, because reader
+                        //byteoffset??
+                    // offset is in bytes, but GetBit needs a bit offset (code included)
+                    if (GetBit(toInflate, readerOffset * 8 + bitsRead)) { //what is readeroffset, where is it set, where did it even come from?
+                        // If the bit was on, go down the right branch
+                        root = root.Right;
+                    }
+                    else {
+                        // If the bit was off, go down the left branch
+                        root = root.Left;
+                    }
+                    // Add one to bits read
+                    bitsRead++;
+                }// End loop
+                // Add root.Data to the result string
+                result += root.Data;
+            } // End loop
             // return the result string
+            return result;
         }
     }
 }
