@@ -59,7 +59,7 @@ namespace DataStructures {
             //convert this integer to bytes and add it to the result list
             byte[] streambitByte = IntToBytes(streamBitCount);
             for (int i = 0; i < streambitByte.Length; i++) {
-                result.AddHead(streambitByte[i]);
+                result.AddTail(streambitByte[i]);
             }
             byte[] dataStreamContents = datastream.Bytes;
             for (int i = 0; i < dataStreamContents.Length; i++) {
