@@ -54,6 +54,7 @@
       <Link>Vector.cs</Link>
     </Compile>
     <Compile Include="Huffman.cs" />
+    <Compile Include="HuffmanEncoding.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -47,15 +47,6 @@ namespace DataStructures {
 
             //loop while the looseNodes list has more than one element in it
             while (looseNodes.Size > 1) {
-                //Repeat above steps for a new local node called right
-                Node right = looseNodes[0];
-                for (int i = 0; i < looseNodes.Size; i++) {
-                    if (right.Frequency > looseNodes[i].Frequency) {
-                        right = looseNodes[i];
-                    }
-                }
-                looseNodes.RemoveAt(looseNodes.IndexOf(right));
-
                 //make local variable called left and set it to looseNodes[0]
                 Node left = looseNodes[0];
                 //we want to set left to the lowest frequency node, loop through nodes
@@ -68,13 +59,20 @@ namespace DataStructures {
                 }//end loop
                 //now that we have a  reference to the smallest node, lets remove it from the list
                 looseNodes.RemoveAt(looseNodes.IndexOf(left));
-                
+                //Repeat above steps for a new local node called right
+                Node right = looseNodes[0];
+                for (int i = 0; i < looseNodes.Size; i++) {
+                    if (right.Frequency > looseNodes[i].Frequency) {
+                        right = looseNodes[i];
+                    }
+                }
+                looseNodes.RemoveAt(looseNodes.IndexOf(right));
                 //Make a new node
                 Node n = new Node();
                 //set its left to the local left node
-                n.Left = left;
+                n.Left = right;
                 //set its right to the local right node
-                n.Right = right;
+                n.Right = left;
                 //set its frequency to the sum of the left and right nodes frequencies
                 n.Frequency = right.Frequency + left.Frequency;
                 //set its data to '\0' (char equivalent of null)

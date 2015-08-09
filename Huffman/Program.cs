@@ -159,12 +159,114 @@ namespace DataStructures {
             expectedNodeFrequency.AddTail(1);
             expectedNodeFrequency.AddTail(1);
 
+            bool isBroken = false;
             for (int i = 0; i < allNodes.Size; ++i) {
                 if (allNodes[i].Data != expectedNodeData[i]) {
                     Error("Error somewhere in huffman tree");
+                    isBroken = true;
                 }
                 if (allNodes[i].Frequency != expectedNodeFrequency[i]) {
                     Error("Error somewhere in huffman tree");
+                    isBroken = true;
+                }
+            }
+            if (isBroken) {
+                return;
+            }
+
+            HashTable<char, BitStream> encodingTable = Huffman.MakeEncodingTable(huffmanTree, new BitStream());
+            SLinkedList<char> keys = encodingTable.Keys;
+            Console.WriteLine("Encoding table:");
+            for (int i = 0; i < keys.Size; ++i) {
+                Console.WriteLine("\t" + keys[i] + ":" + encodingTable[keys[i]].ToString());
+            }
+
+            BitStream tempStream = new BitStream();
+            HashTable<char, BitStream> expectedEncoding = new HashTable<char, BitStream>(char.MaxValue, Huffman.HashChar);
+
+            tempStream = new BitStream();
+            tempStream.Append("01111000");
+            expectedEncoding.Add('w', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01110000");
+            expectedEncoding.Add('v', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01101000");
+            expectedEncoding.Add('t', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("00100000");
+            expectedEncoding.Add('s', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("10110000");
+            expectedEncoding.Add('r', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("10100000");
+            expectedEncoding.Add('p', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01100000");
+            expectedEncoding.Add('o', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("10010000");
+            expectedEncoding.Add('n', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01011000");
+            expectedEncoding.Add('m', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01010000");
+            expectedEncoding.Add('l', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("11000000");
+            expectedEncoding.Add('i', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01001000");
+            expectedEncoding.Add('h', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("01000000");
+            expectedEncoding.Add('g', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("10000000");
+            expectedEncoding.Add('e', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("00011000");
+            expectedEncoding.Add('d', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("00010000");
+            expectedEncoding.Add('a', tempStream);
+            tempStream = new BitStream();
+            tempStream.Append("00000000");
+            expectedEncoding.Add(' ', tempStream);
+
+
+            SLinkedList<char> eeKeys = expectedEncoding.Keys;
+            SLinkedList<char> etKeys = encodingTable.Keys;
+
+            for (int i = 0; i < eeKeys.Size; ++i) {
+                if (etKeys.IndexOf(eeKeys[i]) < 0) {
+                    Error("Key " + eeKeys[i] + " not found in encoding table");
+                    return;
+                }
+            }
+
+            for (int i = 0; i < etKeys.Size; ++i) {
+                if (eeKeys.IndexOf(etKeys[i]) < 0) {
+                    Error("Unexpected key: " + etKeys[i] + " found in encoding table");
+                    return;
+                }
+            }
+
+            for (int i = 0; i < etKeys.Size; ++i) {
+                string expectedStr = expectedEncoding[eeKeys[i]].ToString();
+                string actualStr = encodingTable[etKeys[i]].ToString();
+
+                if (expectedStr != actualStr) {
+                    ConsoleColor old = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+
+                    Console.WriteLine("Error, looking at key: " + eeKeys[i] + " (should be the same as: " + etKeys[i] + ")");
+                    Console.WriteLine("\tExpected valaue: " + expectedStr);
+                    Console.WriteLine("\tResulting valaue:" + actualStr);
+
+                    Console.ForegroundColor = old;
                 }
             }
 
