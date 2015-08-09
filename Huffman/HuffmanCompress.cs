@@ -37,10 +37,8 @@ namespace DataStructures {
                 result.AddTail(key[1]); // O(1) vs O(n) even though it is trivial enough to be small
                 //convert the current value to foure bytes,
                 byte[] value = IntToBytes(FreqTable[list[i]]);
-                Console.WriteLine("Value length: " + value.Length);
                 //add alll four bytes to the linked list
                 for (int j = 0; j < value.Length; j++) {
-                    Console.WriteLine("Value " + value[i]);
                     result.AddTail(value[j]);
                 }
             }//end loop
