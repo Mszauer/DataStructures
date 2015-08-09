@@ -59,6 +59,10 @@ namespace DataStructures {
             for (int i = 0; i < streambitByte.Length; i++) {
                 result.AddHead(streambitByte[i]);
             }
+            byte[] dataStreamContents = datastream.Bytes;
+            for (int i = 0; i < dataStreamContents.Length; i++) {
+                result.AddTail(dataStreamContents[i]);
+            }
             //finally convert the result list to a byte array.
             byte[] byteResult = new byte[result.Size];
             for (int i = 0; i < byteResult.Length; i++) {
