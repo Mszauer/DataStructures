@@ -18,7 +18,8 @@ namespace DataStructures {
             
             //make an encoding table out of the huffman tree, out of a frequency table
             HashTable<char, int> FreqTable = MakeFrequencyTable(toCompress); //copy to memory because we access it multiple times
-            HashTable<char,BitStream> encodingTable = MakeEncodingTable(MakeHuffmanTree(FreqTable),new BitStream()); // add to memory because accessed twice
+            Node huffmanTree = MakeHuffmanTree(FreqTable);
+            HashTable<char,BitStream> encodingTable = MakeEncodingTable(huffmanTree,new BitStream()); // add to memory because accessed twice
             //convert the size of the frequency table to bytes.
             byte[] freqToByte = IntToBytes(FreqTable.Size);
             //and all four bytes to the resuld linked list
