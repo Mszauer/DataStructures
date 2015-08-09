@@ -14,8 +14,8 @@ namespace DataStructures {
                 string[] words = command.Split(' ');
                 if (command == "help") {
                     Console.WriteLine("Available commands:");
-                    Console.WriteLine("\t compress < path >");
-                    Console.WriteLine("\t inflate < path >");
+                    Console.WriteLine("\t compress to < path >");
+                    Console.WriteLine("\t inflate from < path >");
                     Console.WriteLine("\t clear");
                     Console.WriteLine("\t list");
                     Console.WriteLine("\t exit");
@@ -35,41 +35,22 @@ namespace DataStructures {
                     Console.Clear();
                     Console.WriteLine("Enter a command, or help for help");
                 }
-                else if (words[0] == "saveBin") {
-                    FileStream stream = new FileStream(words[1], FileMode.CreateNew);
-                    BinaryWriter writer = new BinaryWriter(stream);
+                else if (words[0] == "compress") {
+                    Console.Write("Please enter the word(s) you want to compress: ");
+                    string phrase = Console.ReadLine();
                     Console.WriteLine("Writing data now...");
-                    SLinkedList<string> keys = data.Keys;
-                    writer.Write((byte)data.Size);
-                    for (int i = 0; i < keys.Size; i++) {
-                        string key = keys[i];
-                        int value = data[key];
-                        writer.Write((byte)key.Length);
-                        foreach (char c in key) {
-                            writer.Write((byte)c);
-                        }
-                        //always 4bytes
-                        writer.Write((int)value);
+                    try {
+                        System.IO.File.WriteAllBytes(words[2], Huffman.Compress(phrase));
+                    }
+                    catch (SystemException e) {
+                        Console.WriteLine("Error: " + e);
                     }
                     Console.WriteLine("Filed Saved");
-                    writer.Dispose();
-                    stream.Dispose();
                 }
-                else if (words[0] == "loadBin") {
-                    if (File.Exists(words[1])) {
+                else if (words[0] == "inflate") {
+                    if (File.Exists(words[2])) {
                         Console.WriteLine("Loading Data...");
-                        using (BinaryReader reader = new BinaryReader(File.Open(words[1], FileMode.Open))) {
-                            int size = reader.ReadByte();
-                            for (int i = 0; i < size; i++) {
-                                int length = (int)reader.ReadByte();
-                                string key = "";
-                                for (int j = 0; j < length; j++) {
-                                    key += reader.ReadChar();
-                                }
-                                int value = reader.ReadInt32();
-                                data.Add(key, value);
-                            }
-                        }
+                        
                         Console.WriteLine("Data has been loaded.");
                     }
                     else {
