@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AB37B182-ACD5-4F61-8EF9-DF69C727AD49}</ProjectGuid>
+    <ProjectGuid>1616d85b-c96f-4405-bf23-6ae9f346348c</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Huffman</RootNamespace>
-    <AssemblyName>Huffman</AssemblyName>
+    <RootNamespace>HuffmanTesting</RootNamespace>
+    <AssemblyName>HuffmanTesting</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,21 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\BitStream\BitStream.cs">
-      <Link>BitStream.cs</Link>
-    </Compile>
-    <Compile Include="..\HashTables\HashTable.cs">
-      <Link>HashTable.cs</Link>
-    </Compile>
-    <Compile Include="..\LinkedList\SLinkedList.cs">
-      <Link>SLinkedList.cs</Link>
-    </Compile>
-    <Compile Include="..\Vector\Vector.cs">
-      <Link>Vector.cs</Link>
-    </Compile>
-    <Compile Include="Huffman.cs" />
-    <Compile Include="HuffmanCompress.cs" />
-    <Compile Include="HuffmanEncoding.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
