@@ -36,7 +36,7 @@ namespace DataStructures {
                     Console.WriteLine("Enter a command, or help for help");
                 }
                 else if (words[0] == "compress") {
-                    Console.WriteLine("Existing File?");
+                    Console.WriteLine("Is it an existing File? (yes/no)");
                     if (Console.ReadLine() == "yes") {
                         Console.WriteLine("What is the file's path?");
                         string path = Console.ReadLine();

@@ -44,6 +44,16 @@ namespace DataStructures {
                     return keys;
             }
         }
+        public bool Contains(K key) {
+            //hash key and find bucket
+            SLinkedList<KVP> bucket = buckets[hash(key)];
+            if (bucket.Size != 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
         public int Size {
             get {
                 return size;
