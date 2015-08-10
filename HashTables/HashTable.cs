@@ -48,7 +48,13 @@ namespace DataStructures {
             //hash key and find bucket
             SLinkedList<KVP> bucket = buckets[hash(key)];
             if (bucket.Size != 0) {
-                return true;
+                for (int i = 0; i < bucket.Size; i++) {
+                    int comparer = System.Collections.Generic.Comparer<K>.Default.Compare(key, bucket[i].Key);
+                    if (comparer == 0) {
+                        return true;
+                    }
+                }
+                return false;
             }
             else {
                 return false;
