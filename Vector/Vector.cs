@@ -1,4 +1,5 @@
 ﻿#define DEBUG
+using System;
 
 namespace DataStructures {
     class Vector<T> {
@@ -39,6 +40,11 @@ namespace DataStructures {
             set {
                 data[index] = value;
             }
+        }
+        public void AddRange(T[] input) {
+            Reserve(size + input.Length);
+            Array.Copy(input, 0, data, Size,input.Length);
+            size += input.Length;
         }
 
         public void Append(T newData) {
