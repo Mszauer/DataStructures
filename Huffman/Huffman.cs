@@ -89,13 +89,12 @@ namespace DataStructures {
 
         public static HashTable<char, int> MakeFrequencyTable(string input) {
             HashTable<char, int> result = new HashTable<char, int>(char.MaxValue, HashChar);
-            //check if key exists (get the keys of the result hash table)
             foreach (char c in input){
                 if (result.Contains(c)) {
-                    result.Add(c, 1);
+                    result[c] += 1;
                 }
                 else {
-                    result[c] += 1;
+                    result.Add(c, 1);
                 }
             }
             return result;
