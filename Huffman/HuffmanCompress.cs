@@ -14,7 +14,7 @@ namespace DataStructures {
         }
         public static byte[] Compress(string toCompress) {
             //then at the end of the function we're going to convert it to an array, and return it.
-            DLinkedList<byte> result = new DLinkedList<byte>();
+            Vector<byte> result = new Vector<byte>();
             
             //make an encoding table out of the huffman tree, out of a frequency table
             Console.WriteLine("Making Huffman frequency table");
@@ -29,7 +29,7 @@ namespace DataStructures {
             //and all four bytes to the resuld linked list
             Console.WriteLine("Adding bytes bytes");
             for (int i = 0; i < freqToByte.Length; i++) {
-                result.AddTail(freqToByte[i]);
+                result.Append(freqToByte[i]);
             }
 
             //next loop through the frequency table
@@ -39,13 +39,13 @@ namespace DataStructures {
                 //convert current key to two bytes
                 byte[] key = CharToBytes(list[i]);
                 //add both bytes to the linked list
-                result.AddTail(key[0]);
-                result.AddTail(key[1]); // O(1) vs O(n) even though it is trivial enough to be small
+                result.Append(key[0]);
+                result.Append(key[1]); // O(1) vs O(n) even though it is trivial enough to be small
                 //convert the current value to foure bytes,
                 byte[] value = IntToBytes(FreqTable[list[i]]);
                 //add alll four bytes to the linked list
                 for (int j = 0; j < value.Length; j++) {
-                    result.AddTail(value[j]);
+                    result.Append(value[j]);
                 }
             }//end loop
                 
@@ -65,12 +65,12 @@ namespace DataStructures {
             Console.WriteLine("Converting bytes");
             byte[] streambitByte = IntToBytes(streamBitCount);
             for (int i = 0; i < streambitByte.Length; i++) {
-                result.AddTail(streambitByte[i]);
+                result.Append(streambitByte[i]);
             }
             Console.WriteLine("Copying Bytes");
             byte[] dataStreamContents = datastream.Bytes;
             for (int i = 0; i < dataStreamContents.Length; i++) {
-                result.AddTail(dataStreamContents[i]);
+                result.Append(dataStreamContents[i]);
             }
             //finally convert the result list to a byte array.
             Console.WriteLine("Convert results list to byte array");
