@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>1616d85b-c96f-4405-bf23-6ae9f346348c</ProjectGuid>
+    <ProjectGuid>{29D86DE8-86F5-49B4-8F7F-BC6A5173BCFF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HuffmanTesting</RootNamespace>

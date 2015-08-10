@@ -50,8 +50,17 @@ namespace DataStructures {
                 else if (words[0] == "inflate") {
                     if (File.Exists(words[2])) {
                         Console.WriteLine("Loading Data...");
-                        
+                        string phrase = Huffman.Inflate(System.IO.File.ReadAllBytes(words[2]));
                         Console.WriteLine("Data has been loaded.");
+                        Console.WriteLine("Where would you like to save this?");
+                        string path = Console.ReadLine();
+                        try {
+                            System.IO.File.WriteAllText(path, phrase);
+                            Console.WriteLine("Data sucessfully saved to: " + path);
+                        }
+                        catch (SystemException e) {
+                            Console.WriteLine("error saving file. \n Error: " + e);
+                        }
                     }
                     else {
                         Console.WriteLine("File not found");

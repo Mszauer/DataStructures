@@ -52,9 +52,10 @@ namespace DataStructures {
 
                 // After the frequency table, is the number of bits that our compressed data consists of
                 // Read an integer from the byte array, lets call it numBits (how many to be read)
-            int numBits = toInflate.Length * 8;
-                // Make a new integer call it bitsRead and set it to 0. We keep track of how many bits need
-                // to be red, and how many HAVE been read
+            int numBits = BytesToInt(toInflate, byteOffset);
+            byteOffset += 4;
+            // Make a new integer call it bitsRead and set it to 0. We keep track of how many bits need
+            // to be red, and how many HAVE been read
             int bitsRead = 0;
 
                 // Make a huffman tree out of the frequency table
@@ -69,7 +70,7 @@ namespace DataStructures {
                     // Read one bit from the input stream and see if its set
                     // we need to multiply readerOffset by 8, because reader
                     // offset is in bytes, but GetBit needs a bit offset (code included)
-                    if (GetBit(toInflate, byteOffset * 8 + bitsRead)) { //what is readeroffset, where is it set, where did it even come from?
+                    if (GetBit(toInflate, byteOffset * 8 + bitsRead)) {
                         // If the bit was on, go down the right branch
                         root = root.Right;
                     }
