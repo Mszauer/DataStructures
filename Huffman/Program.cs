@@ -36,16 +36,32 @@ namespace DataStructures {
                     Console.WriteLine("Enter a command, or help for help");
                 }
                 else if (words[0] == "compress") {
-                    Console.Write("Please enter the word(s) you want to compress: ");
-                    string phrase = Console.ReadLine();
-                    Console.WriteLine("Writing data now...");
-                    try {
-                        System.IO.File.WriteAllBytes(words[2], Huffman.Compress(phrase));
+                    Console.WriteLine("Existing File?");
+                    if (Console.ReadLine() == "yes") {
+                        Console.WriteLine("What is the file's path?");
+                        string path = Console.ReadLine();
+                        string phrase = File.ReadAllText(path);
+                        Console.WriteLine("Writing data now...");
+                        try {
+                            System.IO.File.WriteAllBytes(words[2], Huffman.Compress(phrase));
+                        }
+                        catch (SystemException e) {
+                            Console.WriteLine("Error: " + e);
+                        }
+                        Console.WriteLine("Filed Saved");
                     }
-                    catch (SystemException e) {
-                        Console.WriteLine("Error: " + e);
+                    else {
+                        Console.Write("Please enter the word(s) you want to compress: ");
+                        string phrase = Console.ReadLine();
+                        Console.WriteLine("Writing data now...");
+                        try {
+                            System.IO.File.WriteAllBytes(words[2], Huffman.Compress(phrase));
+                        }
+                        catch (SystemException e) {
+                            Console.WriteLine("Error: " + e);
+                        }
+                        Console.WriteLine("Filed Saved");
                     }
-                    Console.WriteLine("Filed Saved");
                 }
                 else if (words[0] == "inflate") {
                     if (File.Exists(words[2])) {
