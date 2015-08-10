@@ -69,6 +69,11 @@ namespace DataStructures {
             data[size] = newData;
             size++;
         }
+        public T[] ToArray() {
+            T[] array = new T[Size];
+            Array.Copy(data, 0, array, 0, Size);
+            return array;
+        }
 
         public void Reserve(int requestedCapacity) {
             if (requestedCapacity > capacity) {

@@ -29,11 +29,6 @@ namespace DataStructures {
             //and all four bytes to the resuld linked list
             Console.WriteLine("Adding bytes bytes");
             result.AddRange(freqToByte);
-            /*
-            for (int i = 0; i < freqToByte.Length; i++) {
-                result.Append(freqToByte[i]);
-            }
-             */
 
             //next loop through the frequency table
             SLinkedList<char> list = FreqTable.Keys;
@@ -43,19 +38,12 @@ namespace DataStructures {
                 byte[] key = CharToBytes(list[i]);
                 //add both bytes to the linked list
                 result.AddRange(key);
-                /*
-                result.Append(key[0]);
-                result.Append(key[1]); // O(1) vs O(n) even though it is trivial enough to be small
-                 */
+
                 //convert the current value to foure bytes,
                 byte[] value = IntToBytes(FreqTable[list[i]]);
                 //add alll four bytes to the linked list
                 result.AddRange(value);
-                /*
-                for (int j = 0; j < value.Length; j++) {
-                    result.Append(value[j]);
-                }
-                 */
+
             }//end loop
                 
             //make new bitstream (datastream) to hold bits
@@ -74,20 +62,14 @@ namespace DataStructures {
             Console.WriteLine("Converting bytes");
             byte[] streambitByte = IntToBytes(streamBitCount);
             result.AddRange(streambitByte);
-            /*
-            for (int i = 0; i < streambitByte.Length; i++) {
-                result.Append(streambitByte[i]);
-            }
-             */
+
             Console.WriteLine("Copying Bytes");
             result.AddRange(datastream.Bytes);
 
             //finally convert the result list to a byte array.
             Console.WriteLine("Convert results list to byte array");
-            byte[] byteResult = new byte[result.Size];
-            for (int i = 0; i < byteResult.Length; i++) {
-                byteResult[i] = result[i];
-            }
+            byte[] byteResult = result.ToArray();
+
             //return the array
             return byteResult;
         }

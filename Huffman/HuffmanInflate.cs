@@ -39,6 +39,7 @@ namespace DataStructures {
             byteOffset += 4;
 
             // Loop 0 to frequencyTableSize
+            Console.WriteLine("copying chars from bytes");
             for (int i = 0; i < frequencyTableSize; i++) {
                 // Read in a character for the table key (add 2 to offset after)
                 char c = BytesToChar(toInflate, byteOffset);
@@ -59,6 +60,7 @@ namespace DataStructures {
             int bitsRead = 0;
 
                 // Make a huffman tree out of the frequency table
+            Console.WriteLine("Making Huffman tree");
             Node huffmanTree = MakeHuffmanTree(frequencyTable);
                 // While the bits read is less than the number of bits
             while (bitsRead < numBits) {
