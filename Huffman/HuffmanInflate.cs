@@ -65,12 +65,11 @@ namespace DataStructures {
                 // equal to the root of the tree
                 Node root = huffmanTree;
                 // While the node is not a leaf
-                while (root.Left != null && root.Right != null) {
+                while (!root.IsLeaf) {
                     // Read one bit from the input stream and see if its set
                     // we need to multiply readerOffset by 8, because reader
-                        //byteoffset??
                     // offset is in bytes, but GetBit needs a bit offset (code included)
-                    if (GetBit(toInflate, readerOffset * 8 + bitsRead)) { //what is readeroffset, where is it set, where did it even come from?
+                    if (GetBit(toInflate, byteOffset * 8 + bitsRead)) { //what is readeroffset, where is it set, where did it even come from?
                         // If the bit was on, go down the right branch
                         root = root.Right;
                     }

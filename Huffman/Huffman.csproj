@@ -57,6 +57,7 @@
     <Compile Include="Huffman.cs" />
     <Compile Include="HuffmanCompress.cs" />
     <Compile Include="HuffmanEncoding.cs" />
+    <Compile Include="HuffmanInflate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
